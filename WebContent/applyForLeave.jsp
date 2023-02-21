@@ -30,12 +30,13 @@
 				<h2>Register here</h2>
 			</div>
 			<div class="info">
-				<input class="fname" type="text" name="name" placeholder="Full name">
-				<input type="text" name="name" placeholder="Email"> <input
-					type="text" name="name" placeholder="Phone number"> <input
-					type="text" name="name" placeholder="Reason to Leave"> <input
-					type="datetime" placeholder="Start date of leave"> <input
-					type="datetime" placeholder="End date of leave">
+				<input class="fname" type="text" name="fname" placeholder="Full name" required>
+				<input type="email" name="mail" placeholder="Email" required> <input
+					type="text" name="phone" placeholder="Phone number" required> <input
+					type="text" name="rtl" placeholder="Reason to Leave" required> <input
+					type="datetime" name="startDate" placeholder="Start date of leave" required> <input
+					type="datetime" name="endDate" placeholder="End date of leave" required>
+					<input type="text" name="comment" placeholder="Comments">
 			</div>
 			<button type="submit" href="/">Submit</button>
 		</form>
