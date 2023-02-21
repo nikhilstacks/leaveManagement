@@ -20,13 +20,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet Filter implementation class Validation
  */
 @WebFilter("/createStudent")
-public class Validation implements Filter {
+public class createStudentValidation implements Filter {
 
  
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		System.out.println("inside filter");
+		System.out.println("inside filter student");
 		PrintWriter out = response.getWriter();
 		
 		String uname = request.getParameter("uname");
@@ -63,7 +63,7 @@ public class Validation implements Filter {
 	                {
 	                	if(uname.length() < 2 || psw.length() < 8)
 	            		{
-	            			HttpServletResponse httpResponse = (HttpServletResponse) response;
+	           
 	            			out.println("<script type=\"text/javascript\">");
 	            			   out.println("alert('Insert Valid data');");
 	            			   out.println("location='createStudent.jsp';");

@@ -58,6 +58,13 @@ public class createStudent extends HttpServlet {
 		 			    out.println("alert('Account Created Successfully :-) ');");
 		 			    out.println("location='studentLogin.jsp';");
 		 			    out.println("</script>");
+	                } else
+	                {
+	                	System.out.println("failed to Inserted Data...");
+	                	out.println("<script type=\"text/javascript\">");
+		 			    out.println("alert('Account Creation Failed :-( ');");
+		 			    out.println("location='studentLogin.jsp';");
+		 			    out.println("</script>");
 	                }
 	                
 	                connObj.close();
