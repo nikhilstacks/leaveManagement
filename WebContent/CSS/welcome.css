@@ -1,0 +1,27 @@
+
+html *{
+	font-family: Nunito, sans-serif;
+	background-color: #E9E8E8;
+}
+
+body{
+	display: flex;
+	justify-content: center;
+	height: 100vh;
+}
+
+.welcome {
+	margin: auto;
+}
+
+.links{
+}
+
+.links>a{
+	margin: auto;
+	text-decoration: underline;
+}
+
+.mainHeading{
+	color: red;
+}
