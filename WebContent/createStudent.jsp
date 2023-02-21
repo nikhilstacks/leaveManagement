@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="CSS/signup.css">
   </head>
   <body>
-    <form action="/createStudent">
+    <form action="createStudent">
       <h1>SIGN UP</h1>
       <div class="icon">
         <i class="fas fa-user-circle"></i>
@@ -16,11 +16,11 @@
       <div class="formcontainer">
       <div class="container">
         <label for="uname"><strong>Username</strong></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
+        <input type="text" placeholder="Enter Username minimum 2 characters" name="uname" required>
         <label for="mail"><strong>E-mail</strong></label>
         <input type="email" placeholder="Enter E-mail" name="mail" required>
         <label for="psw"><strong>Password</strong></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="password" placeholder="Enter Password minimum 8 characters" name="psw" required>
       </div>
       <button type="submit"><strong>SIGN UP</strong></button>
     </form>

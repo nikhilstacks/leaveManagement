@@ -1,9 +1,11 @@
 package com.nikhil;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -20,6 +22,13 @@ import javax.servlet.http.HttpServletResponse;
 public class createStudent extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		String uname = request.getParameter("uname");
+		String mail = request.getParameter("mail");
+		String psw = request.getParameter("psw");
+		
+		PrintWriter out = response.getWriter();
+		
 		   Connection connObj;
 	       String JDBC_URL = "jdbc:sqlserver://MUM-606Z2B3\\MSSQLSERVER04;DatabaseName=LeaveManagementSys;trustServerCertificate=true;encrypt=false;";
 	       
@@ -27,33 +36,32 @@ public class createStudent extends HttpServlet {
 	            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 	            connObj = DriverManager.getConnection(JDBC_URL, "sa", "root");
 	            if(connObj != null) {
-	                DatabaseMetaData metaObj = (DatabaseMetaData) connObj.getMetaData();
 	                System.out.println("successfully connected");
 	                
-//	                String get = "select username as name, pass from login where pass= 123";
-//	                Statement statement = connObj.createStatement();
-//	                
-//	                ResultSet rs = statement.executeQuery(get);
-//	                String name = null;
-//	                int pass = 0;
-//	                while(rs.next()){
-//	                	name = rs.getString("name");
-//	                	pass = rs.getInt("pass");
-//	                }
-//	                
-//	                System.out.println("agar ye chal gaya chandi hojaegii bccccccccc");
-//	                System.out.println("name from query is: " + name + " pass word from query is: "+  pass);
-//	                
-//	                int rows = statement.executeUpdate(qry);
-//	                
-//	                if(rows > 0 ){
-//	                	System.out.println("data inserted successfully...");
-//	                } else {
-//	                	System.out.println("try again");
-//	                }
+	                String get = "insert into student(name, email, password)"
+	                		+ "values(?,?,?)";
+	                
+                    Statement statement = connObj.createStatement();
+                    
+                    PreparedStatement pstmt = connObj.prepareStatement(get,
+                            Statement.RETURN_GENERATED_KEYS);
+                    
+                    pstmt.setString(1, uname);
+                    pstmt.setString(2, mail);
+                    pstmt.setString(3, psw);
+                    
+	                int rows = pstmt.executeUpdate();
+	                if(rows > 0 )
+	                {
+	                	System.out.println("Data Inserted Successfully...");
+	                	out.println("<script type=\"text/javascript\">");
+		 			    out.println("alert('Account Created Successfully :-) ');");
+		 			    out.println("location='studentLogin.jsp';");
+		 			    out.println("</script>");
+	                }
+	                
 	                connObj.close();
-	                response.sendRedirect("studentLogin.jsp");
-	            } 
+	            }
 	        } catch(Exception sqlException) {
 	            sqlException.printStackTrace();
 	        }
