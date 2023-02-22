@@ -2,23 +2,49 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="CSS/Global.css">
 <link rel="stylesheet" href="CSS/welcome.css">
-<title>Insert title here</title>
+<title>Welcome Page</title>
 </head>
 <body>
-	<a href="index.html"> <img src="images/LMS.png"
-		alt="Logo of Leave Management System" height="40px" width="80px">
-	</a>
-	<div class="welcome">
-	
-	<h1 class="mainHeading">Welcome to Leave Management Portal</h1>
-	    <div class="links">
-	    <a href="stafflogin.jsp" >Login as Staff</a>  <br>
-		<a href="studentLogin.jsp" >Login as Student</a>  <br>
-		<a href="createStudent.jsp" >Create Account Student</a>  <br>
-		<a href="createStaff.jsp" >Create Account Staff</a>  <br>
-	    </div>
-	</div>
+	<section class="top">
+		<h1 class="mainHeading">Welcome to Leave Management Portal</h1>
+	</section>
+	<section class="bottom">
+
+		<div class="links">
+			<figure>
+				<a href="stafflogin.jsp"><img src="images/teacher.png"
+					alt="student login image" /></a>
+				<br>
+				<figcaption>Login As Staff</figcaption>
+			</figure>
+		</div>
+		<div class="links">
+			<figure>
+				<a href="createStaff.jsp"><img src="images/teacherCreate.png"
+					alt="student login image" /></a>
+				<br>
+				<figcaption>Create Account Staff</figcaption>
+			</figure>
+		</div>
+
+		<div class="links">
+			<figure>
+				<a href="stafflogin.jsp"><img src="images/student.png"
+					alt="student login image" /></a>
+				<br>
+				<figcaption>Login As Student</figcaption>
+			</figure>
+		</div>
+		<div class="links">
+			<figure>
+				<a href="createStudent.jsp"><img src="images/studentCreate.png"
+					alt="student login image" /></a>
+				<br>
+				<figcaption>Create Account Student</figcaption>
+			</figure>
+		</div>
+
+	</section>
 </body>
 </html>

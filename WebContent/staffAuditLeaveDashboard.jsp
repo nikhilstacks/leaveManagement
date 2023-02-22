@@ -8,26 +8,39 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Student Leave Dashboard</title>
+<title>Staff Audit Dashboard</title>
 </head>
 <body>
-<a href="index.html"> <img src="images/LMS.png"
+	<%
+		response.setHeader("Cache-Control",
+				"no-cache, no-store, must-revalidate"); //http 1.1
+
+		response.setHeader("Pragma", "no-cache"); //http 1.0
+
+		response.setHeader("Expires", "0"); //proxies
+
+		if (session.getAttribute("usernameStaff") == null) {
+			response.sendRedirect("stafflogin.jsp");
+		}
+	%>
+	<a href="index.html"> <img src="images/LMS.png"
 		alt="Logo of Leave Management System" height="40px" width="80px">
 	</a>
+	<form action="logout">
+		<input type="submit" value="LOGOUT">
+	</form>
 	<%
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
 
 		ResultSet rs;
-        
-        
-        String qry = "Select * from audit";
-       
 
-	PreparedStatement pstmt = connObj.prepareStatement(qry,
-			Statement.RETURN_GENERATED_KEYS);
+		String qry = "Select * from audit";
 
-	rs = pstmt.executeQuery();  
+		PreparedStatement pstmt = connObj.prepareStatement(qry,
+				Statement.RETURN_GENERATED_KEYS);
+
+		rs = pstmt.executeQuery();
 	%>
 	<TABLE cellpadding="15" border="1" style="background-color: #ffffcc;">
 		<TR>
@@ -37,6 +50,7 @@
 			<TH>START DATE</TH>
 			<TH>END DATE</TH>
 			<TH>STATUS</TH>
+			<TH>ACTIONS</TH>
 		</TR>
 		<%
 			while (rs.next()) {
@@ -48,6 +62,14 @@
 			<TD><%=rs.getDate(4)%></TD>
 			<TD><%=rs.getDate(5)%></TD>
 			<TD><%=rs.getString(6)%></TD>
+			<TD><form action="approveLeave">
+					<input type="hidden" name="id" value="<%=rs.getString(7)%>" />
+					<button type="submit">Approve</button>
+				</form>
+				<form action="declineLeave">
+					<input type="hidden" name="id" value="<%=rs.getString(7)%>" />
+					<button type="submit">Decline</button>
+				</form></TD>
 		</TR>
 		<%
 			}

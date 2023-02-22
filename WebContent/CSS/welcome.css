@@ -1,27 +1,46 @@
 
-html *{
+html *, body{
 	font-family: Nunito, sans-serif;
-	background-color: #E9E8E8;
+	margin: 0;
+	padding: 0;
 }
 
-body{
+/* CSS for top section in welcome page */
+.top{
+	background-color: #2D4059;
 	display: flex;
+	height: 50vh;
 	justify-content: center;
-	height: 100vh;
-}
-
-.welcome {
-	margin: auto;
-}
-
-.links{
-}
-
-.links>a{
-	margin: auto;
-	text-decoration: underline;
+	width:100vw;
 }
 
 .mainHeading{
-	color: red;
+	color: #F0EEED;
+	margin: auto;
+	font-size: 4.3vw;
+}
+
+/* CSS for bottom section of welcome page */
+.bottom{
+	background-color: #6096B4;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding:3rem 0;
+	width:100vw;
+}
+
+.links{
+	margin: auto;
+}
+
+img{
+	border-radius: 50%;
+	max-width: 250px;
+    height: auto;
+}
+
+figcaption{
+	text-align: center;
+	color: #F0EEED;
 }

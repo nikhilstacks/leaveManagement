@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class staffLogin
@@ -70,6 +71,8 @@ public class staffLogin extends HttpServlet {
 					
 					if(pass.equals(psw))
 					{
+					HttpSession session = request.getSession();
+				    session.setAttribute("usernameStaff", mail);	
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('User login successfully');");
 					out.println("location='staffAuditLeaveDashboard.jsp';");

@@ -10,6 +10,18 @@
 <link rel="stylesheet" href="CSS/staffLogin.css">
 </head>
 <body>
+	<%
+		response.setHeader("Cache-Control",
+				"no-cache, no-store, must-revalidate"); //http 1.1
+
+		response.setHeader("Pragma", "no-cache"); //http 1.0
+
+		response.setHeader("Expires", "0"); //proxies
+
+		if (session.getAttribute("usernameStudent") != null) {
+			response.sendRedirect("studentDashboard.jsp");
+		}
+	%>
 	<a href="index.html"> <img src="images/LMS.png"
 		alt="Logo of Leave Management System" height="40px" width="80px">
 	</a>

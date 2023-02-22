@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <html>
-<title>Simple Sign up from</title>
+<title>Create Staff</title>
 <head>
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"

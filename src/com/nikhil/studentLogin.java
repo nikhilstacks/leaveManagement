@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class studentLogin
@@ -68,9 +69,11 @@ public class studentLogin extends HttpServlet {
 				} else {
 
 					if (pass.equals(psw)) {
+						HttpSession session = request.getSession();
+					    session.setAttribute("usernameStudent", mail);
 						out.println("<script type=\"text/javascript\">");
 						out.println("alert('User login successfully');");
-						out.println("location='studentDashboard.html';");
+						out.println("location='studentDashboard.jsp';");
 						out.println("</script>");
 					} else {
 						out.println("<script type=\"text/javascript\">");

@@ -11,23 +11,36 @@
 <title>Student Leave Dashboard</title>
 </head>
 <body>
+	<%
+		response.setHeader("Cache-Control",
+				"no-cache, no-store, must-revalidate"); //http 1.1
+
+		response.setHeader("Pragma", "no-cache"); //http 1.0
+
+		response.setHeader("Expires", "0"); //proxies
+
+		if (session.getAttribute("usernameStudent") == null) {
+			response.sendRedirect("studentLogin.jsp");
+		}
+	%>
 	<a href="index.html"> <img src="images/LMS.png"
 		alt="Logo of Leave Management System" height="40px" width="80px">
 	</a>
+	<form action="logout">
+		<input type="submit" value="LOGOUT">
+	</form>
 	<%
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
 
 		ResultSet rs;
-        
-        
-        String qry = "Select * from leaves";
-       
 
-	PreparedStatement pstmt = connObj.prepareStatement(qry,
-			Statement.RETURN_GENERATED_KEYS);
+		String qry = "Select * from leaves";
 
-	rs = pstmt.executeQuery();  
+		PreparedStatement pstmt = connObj.prepareStatement(qry,
+				Statement.RETURN_GENERATED_KEYS);
+
+		rs = pstmt.executeQuery();
 	%>
 	<TABLE cellpadding="15" border="1" style="background-color: #ffffcc;">
 		<TR>
@@ -54,9 +67,9 @@
 			<TD><%=rs.getString(7)%></TD>
 			<TD><%=rs.getString(8)%></TD>
 			<TD><form action="deleteLeave">
-			<input type="hidden" name="id" value="<%=rs.getString(9)%>" />
-			<button type="submit">DEL</button>
-			</form></TD>
+					<input type="hidden" name="id" value="<%=rs.getString(9)%>" />
+					<button type="submit">DELETE</button>
+				</form></TD>
 		</TR>
 		<%
 			}

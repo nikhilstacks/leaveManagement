@@ -3,13 +3,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Simple login form</title>
+<title>Staff Login</title>
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 	rel="stylesheet">
 <link rel="stylesheet" href="CSS/staffLogin.css">
 </head>
 <body>
+	<%
+		response.setHeader("Cache-Control",
+				"no-cache, no-store, must-revalidate"); //http 1.1
+
+		response.setHeader("Pragma", "no-cache"); //http 1.0
+
+		response.setHeader("Expires", "0"); //proxies
+
+		if (session.getAttribute("usernameStaff") != null) {
+			response.sendRedirect("staffAuditLeaveDashboard.jsp");
+		}
+	%>
 	<a href="index.html"> <img src="images/LMS.png"
 		alt="Logo of Leave Management System" height="40px" width="80px">
 	</a>
