@@ -1,13 +1,17 @@
-html, body {
-	display: flex;
-	justify-content: center;
+html {
+	background-color: #E9E8E8;
 	font-family: Roboto, Arial, sans-serif;
 	font-size: 15px;
-	background-color: #E9E8E8;
+	
+}
+.main{
+	display: flex;
+	height: 100vh;
+	justify-content: center;
 }
 
 form {
-	
+	margin: auto;
 }
 
 input[type=password], input[type=email] {

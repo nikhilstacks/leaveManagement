@@ -22,21 +22,25 @@
 			response.sendRedirect("studentDashboard.jsp");
 		}
 	%>
-	<a href="index.html"> <img src="images/LMS.png"
+	<!-- <a href="index.html"> <img src="images/LMS.png"
 		alt="Logo of Leave Management System" height="40px" width="80px">
-	</a>
-	<form action="studentLogin">
-		<h1>Login Student</h1>
-		<div class="formcontainer">
-			<hr />
-			<div class="container">
-				<label for="uname"><strong>Username</strong></label> <input
-					type="email" placeholder="Enter Username" name="mail" required>
-				<label for="psw"><strong>Password</strong></label> <input
-					type="password" placeholder="Enter Password" name="psw" required>
+	</a> -->
+
+	<section class="main">
+		<form action="studentLogin">
+			<h1>Login Student</h1>
+			<div class="formcontainer">
+				<hr />
+				<div class="container">
+					<label for="uname"><strong>Username</strong></label> <input
+						type="email" placeholder="Enter Username" name="mail" required>
+					<label for="psw"><strong>Password</strong></label> <input
+						type="password" placeholder="Enter Password" name="psw" required>
+				</div>
+				<button type="submit">Login</button>
 			</div>
-			<button type="submit">Login</button>
-		</div>
-	</form>
+		</form>
+	</section>
+
 </body>
 </html>

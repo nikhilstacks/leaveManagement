@@ -22,9 +22,11 @@
 			response.sendRedirect("staffAuditLeaveDashboard.jsp");
 		}
 	%>
-	<a href="index.html"> <img src="images/LMS.png"
+	<!-- <a href="index.html"> <img src="images/LMS.png"
 		alt="Logo of Leave Management System" height="40px" width="80px">
-	</a>
+	</a> -->
+	
+	<section class="main">
 	<form action="staffLogin">
 		<h1>Login Staff</h1>
 		<div class="formcontainer">
@@ -36,7 +38,9 @@
 					type="password" placeholder="Enter Password" name="psw" required>
 			</div>
 			<button type="submit">Login</button>
-			</div>
+		</div>
 	</form>
+	</section>
+
 </body>
 </html>

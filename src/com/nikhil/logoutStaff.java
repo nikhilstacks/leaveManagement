@@ -10,23 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class logout
+ * Servlet implementation class logoutStaff
  */
-@WebServlet("/logout")
-public class logout extends HttpServlet {
+@WebServlet("/logoutStaff")
+public class logoutStaff extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void service(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		HttpSession session = request.getSession();
-		session.removeAttribute("username");
-		session.invalidate();
+		session.removeAttribute("usernameStaff");
 
 		response.sendRedirect("index.html");
 	}

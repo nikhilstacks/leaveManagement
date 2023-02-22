@@ -22,7 +22,7 @@
 	<a href="index.html"> <img src="images/LMS.png"
 		alt="Logo of Leave Management System" height="40px" width="80px">
 	</a>
-	<form action="logout">
+	<form action="logoutStudent">
 		<input type="submit" value="LOGOUT">
 	</form>
 	<form action="applyForLeave.jsp">
