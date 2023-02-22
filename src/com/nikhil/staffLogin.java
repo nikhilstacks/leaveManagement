@@ -72,7 +72,7 @@ public class staffLogin extends HttpServlet {
 					{
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('User login successfully');");
-					out.println("location='stafflogin.jsp';");
+					out.println("location='staffAuditLeaveDashboard.jsp';");
 					out.println("</script>");
 					} 
 					else 

@@ -11,7 +11,7 @@
 <title>Student Leave Dashboard</title>
 </head>
 <body>
-	<a href="index.html"> <img src="images/LMS.png"
+<a href="index.html"> <img src="images/LMS.png"
 		alt="Logo of Leave Management System" height="40px" width="80px">
 	</a>
 	<%
@@ -21,7 +21,7 @@
 		ResultSet rs;
         
         
-        String qry = "Select * from leaves";
+        String qry = "Select * from audit";
        
 
 	PreparedStatement pstmt = connObj.prepareStatement(qry,
@@ -33,11 +33,9 @@
 		<TR>
 			<TH>FULL NAME</TH>
 			<TH>EMAIL</TH>
-			<TH>PHONE</TH>
 			<TH>REASON FOR LEAVE</TH>
 			<TH>START DATE</TH>
 			<TH>END DATE</TH>
-			<TH>COMMENTS</TH>
 			<TH>STATUS</TH>
 		</TR>
 		<%
@@ -47,11 +45,9 @@
 			<TD><%=rs.getString(1)%></TD>
 			<TD><%=rs.getString(2)%></TD>
 			<TD><%=rs.getString(3)%></TD>
-			<TD><%=rs.getString(4)%></TD>
+			<TD><%=rs.getDate(4)%></TD>
 			<TD><%=rs.getDate(5)%></TD>
-			<TD><%=rs.getDate(6)%></TD>
-			<TD><%=rs.getString(7)%></TD>
-			<TD><%=rs.getString(8)%></TD>
+			<TD><%=rs.getString(6)%></TD>
 		</TR>
 		<%
 			}
