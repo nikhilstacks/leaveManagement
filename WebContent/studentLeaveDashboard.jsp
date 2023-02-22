@@ -39,6 +39,7 @@
 			<TH>END DATE</TH>
 			<TH>COMMENTS</TH>
 			<TH>STATUS</TH>
+			<TH>ACTION</TH>
 		</TR>
 		<%
 			while (rs.next()) {
@@ -52,6 +53,10 @@
 			<TD><%=rs.getDate(6)%></TD>
 			<TD><%=rs.getString(7)%></TD>
 			<TD><%=rs.getString(8)%></TD>
+			<TD><form action="deleteLeave">
+			<input type="hidden" name="id" value="<%=rs.getString(9)%>" />
+			<button type="submit">DEL</button>
+			</form></TD>
 		</TR>
 		<%
 			}

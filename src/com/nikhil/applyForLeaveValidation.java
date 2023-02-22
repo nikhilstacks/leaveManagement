@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.time.LocalDate;
 
 import javax.servlet.Filter;
@@ -34,7 +31,7 @@ public class applyForLeaveValidation implements Filter {
 		PrintWriter out = response.getWriter();
 
 		String uname = request.getParameter("fname");
-		String mail = request.getParameter("mail");
+//		String mail = request.getParameter("mail");
 		String phone = request.getParameter("phone");
 		String reason = request.getParameter("rtl");
 		String startDate = request.getParameter("startDate");
