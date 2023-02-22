@@ -19,6 +19,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/createStaff")
 public class createStaff extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -42,7 +47,6 @@ public class createStaff extends HttpServlet {
 				String get = "insert into staff(name, email, password, employee_id)"
 						+ "values(?,?,?,?)";
 
-				Statement statement = connObj.createStatement();
 
 				PreparedStatement pstmt = connObj.prepareStatement(get,
 						Statement.RETURN_GENERATED_KEYS);

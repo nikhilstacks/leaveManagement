@@ -5,13 +5,10 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +19,11 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/applyForLeave")
 public class applyForLeave extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -46,12 +48,12 @@ public class applyForLeave extends HttpServlet {
 			connObj = DriverManager.getConnection(JDBC_URL, "sa", "root");
 			if (connObj != null) {
 				System.out.println("successfully connected leaves");
-				
+
 				String insertLeaves = "insert into leaves(fname, email, phone, Reason, startDate, endDate, comments, state)"
 						+ "values(?,?,?,?,?,?,?,'pending')";
 
-				PreparedStatement pstmt = connObj.prepareStatement(insertLeaves,
-						Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement pstmt = connObj.prepareStatement(
+						insertLeaves, Statement.RETURN_GENERATED_KEYS);
 
 				pstmt.setString(1, fname);
 				pstmt.setString(2, mail);
@@ -60,31 +62,27 @@ public class applyForLeave extends HttpServlet {
 				pstmt.setString(5, startDate);
 				pstmt.setString(6, endDate);
 				pstmt.setString(7, comment);
-				
-				
+
 				String insertAudit = "insert into audit(fname, email, Reason, startDate, endDate, state)"
 						+ "values(?,?,?,?,?,'pending')";
-				
-				
 
-				PreparedStatement pstmt2 = connObj.prepareStatement(insertAudit,
-						Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement pstmt2 = connObj.prepareStatement(
+						insertAudit, Statement.RETURN_GENERATED_KEYS);
 
 				pstmt2.setString(1, fname);
 				pstmt2.setString(2, mail);
 				pstmt2.setString(3, reason);
 				pstmt2.setString(4, startDate);
 				pstmt2.setString(5, endDate);
-				
-				
+
 				int row1 = pstmt.executeUpdate();
 				int row2 = pstmt2.executeUpdate();
-				
-				if (row1 > 0 && row2 > 0 ) {
+
+				if (row1 > 0 && row2 > 0) {
 					System.out.println("Data Inserted Successfully...");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('data inserted into leaves :-) ');");
-					out.println("location='applyForLeave.jsp';");
+					out.println("location='studentLeaveDashboard.jsp';");
 					out.println("</script>");
 				} else {
 					System.out.println("failed to Inserted Data...");

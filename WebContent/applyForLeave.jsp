@@ -5,9 +5,7 @@
 <head>
 <title>Educational registration form</title>
 <link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-	crossorigin="anonymous">
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 	rel="stylesheet">
@@ -38,7 +36,7 @@
 					type="datetime" name="endDate" placeholder="End date of leave" required>
 					<input type="text" name="comment" placeholder="Comments">
 			</div>
-			<button type="submit" href="/">Submit</button>
+			<button type="submit">Submit</button>
 		</form>
 	</div>
 </body>

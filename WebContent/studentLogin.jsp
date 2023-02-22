@@ -24,6 +24,7 @@
 					type="password" placeholder="Enter Password" name="psw" required>
 			</div>
 			<button type="submit">Login</button>
+		</div>
 	</form>
 </body>
 </html>
