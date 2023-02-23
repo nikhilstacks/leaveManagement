@@ -49,7 +49,7 @@
 				<input class="fname" type="text" name="fname"
 					placeholder="Full name" required> <input type="email"
 					name="mail" placeholder="Email" required value="${usernameStudent}" readonly> <input
-					type="text" name="phone" placeholder="Phone number" required autocomplete="off">
+					type="text" name="phone" placeholder="Phone number Min 10 characters" required autocomplete="off">
 				<input type="text" name="rtl" placeholder="Reason to Leave" autocomplete="off" required>
 				<input type="datetime" name="startDate"
 					placeholder="Start date YYYY-MM-DD" autocomplete="off" required> <input
