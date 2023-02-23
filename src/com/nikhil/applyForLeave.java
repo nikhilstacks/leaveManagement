@@ -28,10 +28,14 @@ public class applyForLeave extends HttpServlet {
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		// place your code here
-		System.out.println("inside leave");
+
+//		System.out.println("inside leave");
+		
+		
 		PrintWriter out = response.getWriter();
 
+		/*----------------getting parameters value from url---------------*/
+		
 		String fname = request.getParameter("fname");
 		String mail = request.getParameter("mail");
 		String phone = request.getParameter("phone");
@@ -79,12 +83,14 @@ public class applyForLeave extends HttpServlet {
 				int row2 = pstmt2.executeUpdate();
 
 				if (row1 > 0 && row2 > 0) {
-					System.out.println("Data Inserted Successfully...");
+					
+//					System.out.println("Data Inserted Successfully...");
 					out.println("<script type=\"text/javascript\">");
 					out.println("location='studentLeaveDashboard.jsp';");
 					out.println("</script>");
 				} else {
-					System.out.println("failed to Inserted Data...");
+					
+//					System.out.println("failed to Inserted Data...");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('data insertion fail :-( ');");
 					out.println("location='applyForLeave.jsp';");

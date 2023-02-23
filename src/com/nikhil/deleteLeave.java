@@ -24,23 +24,19 @@ public class deleteLeave extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
 
+		PrintWriter out = response.getWriter();
 		String id = request.getParameter("id");
 
-		Connection connObj;
-		String JDBC_URL = "jdbc:sqlserver://MUM-606Z2B3\\MSSQLSERVER04;DatabaseName=LeaveManagementSys;trustServerCertificate=true;encrypt=false;";
+		DatabaseConnectionMain connection = new DatabaseConnectionMain();
+		Connection connObj = connection.getConnection();
 
-		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			connObj = DriverManager.getConnection(JDBC_URL, "sa", "root");
 			if (connObj != null) {
 				System.out.println("successfully connected delete");
 
 				String qry1 = "DELETE FROM leaves WHERE id=?;";
-				String qry2 = "DELETE FROM audit WHERE id=?;";
-
+				String qry2 = "DELETE FROM audit WHERE id=? AND state='pending';";
+				try{
 				PreparedStatement pstmt = connObj.prepareStatement(qry1,
 						Statement.RETURN_GENERATED_KEYS);
 				PreparedStatement pstmt2 = connObj.prepareStatement(qry2,
@@ -50,14 +46,16 @@ public class deleteLeave extends HttpServlet {
 				pstmt2.setString(1, id);
 				pstmt.executeQuery();
 				pstmt2.executeQuery();
+				
 				System.out.println("successfully deleted data...");
 				out.println("<script type=\"text/javascript\">");
 				out.println("location='studentLeaveDashboard.jsp';");
 				out.println("</script>");
+				} catch (Exception sqlException) {
+					sqlException.printStackTrace();
+				}
 			}
-		} catch (Exception sqlException) {
-			sqlException.printStackTrace();
-		}
+		
 
 	}
 

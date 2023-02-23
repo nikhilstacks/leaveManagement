@@ -72,6 +72,9 @@
 				<TD><%=rs.getDate(6)%></TD>
 				<TD><%=rs.getString(7)%></TD>
 				<TD><%=rs.getString(8)%></TD>
+				<%if(rs.getString(8).equals("declined") || rs.getString(8).equals("approved") ){
+					continue;
+				} %>
 				<TD><form action="deleteLeave">
 						<input type="hidden" name="id" value="<%=rs.getString(9)%>" />
 						<button type="submit">DELETE</button>
