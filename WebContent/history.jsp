@@ -41,7 +41,7 @@
 
 		ResultSet rs;
 
-		String qry = "Select fname, email, reason, startDate, endDate, state from leaves where state='approved' OR state='declined'";
+		String qry = "Select fname, email, reason, startDate, endDate, state from leaves where state='approved' OR state='declined' order by id desc";
 
 		PreparedStatement pstmt = connObj.prepareStatement(qry,
 				Statement.RETURN_GENERATED_KEYS);

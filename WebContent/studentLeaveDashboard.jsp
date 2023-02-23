@@ -39,7 +39,7 @@
 
 		ResultSet rs;
 
-		String qry = "Select * from leaves where email=?";
+		String qry = "Select * from leaves where email=? order by id desc";
 
 		PreparedStatement pstmt = connObj.prepareStatement(qry,
 				Statement.RETURN_GENERATED_KEYS);

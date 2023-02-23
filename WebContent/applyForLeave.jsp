@@ -52,8 +52,8 @@
 					type="text" name="phone" placeholder="Phone number" required>
 				<input type="text" name="rtl" placeholder="Reason to Leave" required>
 				<input type="datetime" name="startDate"
-					placeholder="Start date of leave" required> <input
-					type="datetime" name="endDate" placeholder="End date of leave"
+					placeholder="Start date YYYY-MM-DD" required> <input
+					type="datetime" name="endDate" placeholder="End date YYYY-MM-DD"
 					required> <input type="text" name="comment"
 					placeholder="Comments">
 			</div>
