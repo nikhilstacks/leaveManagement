@@ -2,18 +2,22 @@
 	height: 80vh;
 	display: flex;
 	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .main{
 	margin: auto;
+	
 }
 
 input[type=submit]{
 	padding: 7rem;
 	font-size:2rem;
 	background-color: #D3E0DC;
+	border-radius:50px;
 }
 
 input[type=submit]:hover{
 	background-color: #00ADB5;
+	box-shadow: 4px 4px #30E3CA;
 }

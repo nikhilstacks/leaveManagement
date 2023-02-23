@@ -72,7 +72,6 @@ public class studentLogin extends HttpServlet {
 						HttpSession session = request.getSession();
 					    session.setAttribute("usernameStudent", mail);
 						out.println("<script type=\"text/javascript\">");
-						out.println("alert('User login successfully');");
 						out.println("location='studentDashboard.jsp';");
 						out.println("</script>");
 					} else {

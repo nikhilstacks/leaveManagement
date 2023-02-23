@@ -9,6 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="CSS/homeButton.css">
+<link rel="stylesheet" href="CSS/tableCss.css">
 <title>Staff Audit Dashboard</title>
 </head>
 <body>
@@ -45,7 +46,8 @@
 
 		rs = pstmt.executeQuery();
 	%>
-	<TABLE cellpadding="15" border="1" style="background-color: #ffffcc;">
+	<section class="requests">
+	<TABLE cellpadding="15" border="1" style="background-color: #D3E0DC;">
 		<TR>
 			<TH>FULL NAME</TH>
 			<TH>EMAIL</TH>
@@ -66,11 +68,11 @@
 			<TD><%=rs.getDate(5)%></TD>
 			<TD><%=rs.getString(6)%></TD>
 			<TD><form action="approveLeave">
-					<input type="hidden" name="id" value="<%=rs.getString(7)%>" />
+					<input class="approve" type="hidden" name="id" value="<%=rs.getString(7)%>" />
 					<button type="submit">Approve</button>
 				</form>
 				<form action="declineLeave">
-					<input type="hidden" name="id" value="<%=rs.getString(7)%>" />
+					<input class="decline" type="hidden" name="id" value="<%=rs.getString(7)%>" />
 					<button type="submit">Decline</button>
 				</form></TD>
 		</TR>
@@ -83,5 +85,6 @@
 			connObj.close();
 		%>
 	</TABLE>
+	</section>
 </body>
 </html>

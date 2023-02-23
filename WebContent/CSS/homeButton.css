@@ -7,6 +7,12 @@ body {
 	display: inline;
 }
 
+span{
+	background-color: #A6E3E9;
+	position: absolute;
+	right: 6rem;
+    top: 0.7rem;
+}
 .logout {
 	display: inline;
 	position: absolute;

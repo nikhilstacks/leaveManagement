@@ -54,7 +54,6 @@ public class declineLeave extends HttpServlet {
 				pstmt2.executeQuery();
 				System.out.println("successfully deleted data...");
 				out.println("<script type=\"text/javascript\">");
-				out.println("alert('approved successfuly :-( ');");
 				out.println("location='staffAuditLeaveDashboard.jsp';");
 				out.println("</script>");
 			}

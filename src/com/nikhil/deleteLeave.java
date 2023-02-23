@@ -52,7 +52,6 @@ public class deleteLeave extends HttpServlet {
 				pstmt2.executeQuery();
 				System.out.println("successfully deleted data...");
 				out.println("<script type=\"text/javascript\">");
-				out.println("alert('data deleted successfully :-( ');");
 				out.println("location='studentLeaveDashboard.jsp';");
 				out.println("</script>");
 			}

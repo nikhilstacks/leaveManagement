@@ -24,7 +24,7 @@
 	<section>
 		<a class="home" href="index.html"> <img src="images/home.png"
 			alt="Logo of Leave Management System" height="40px" width="80px">
-		</a>
+		</a><span>${usernameStudent }</span>
 		<form class="logout" action="logoutStudent">
 			<button type="submit">LogOut</button>
 		</form>
@@ -38,7 +38,7 @@
 		</div>
 		<div class="main">
 			<form action="studentLeaveDashboard.jsp">
-				<input type="submit" value="Show status for applied leave">
+				<input type="submit" value="Status Applied Leaves">
 			</form>
 		</div>
 	</section>

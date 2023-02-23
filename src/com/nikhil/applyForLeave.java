@@ -81,7 +81,6 @@ public class applyForLeave extends HttpServlet {
 				if (row1 > 0 && row2 > 0) {
 					System.out.println("Data Inserted Successfully...");
 					out.println("<script type=\"text/javascript\">");
-					out.println("alert('data inserted into leaves :-) ');");
 					out.println("location='studentLeaveDashboard.jsp';");
 					out.println("</script>");
 				} else {

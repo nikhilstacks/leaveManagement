@@ -60,7 +60,6 @@ public class createStaff extends HttpServlet {
 				if (rows > 0) {
 					System.out.println("Data Inserted Successfully...");
 					out.println("<script type=\"text/javascript\">");
-					out.println("alert('Account Created Successfully :-) ');");
 					out.println("location='stafflogin.jsp';");
 					out.println("</script>");
 				} else

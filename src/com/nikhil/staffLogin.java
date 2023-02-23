@@ -64,7 +64,7 @@ public class staffLogin extends HttpServlet {
 				{
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('invalid Credentials');");
-					out.println("location='srafflogin.jsp';");
+					out.println("location='stafflogin.jsp';");
 					out.println("</script>");
 
 				} else {
@@ -74,7 +74,6 @@ public class staffLogin extends HttpServlet {
 					HttpSession session = request.getSession();
 				    session.setAttribute("usernameStaff", mail);	
 					out.println("<script type=\"text/javascript\">");
-					out.println("alert('User login successfully');");
 					out.println("location='staffAuditLeaveDashboard.jsp';");
 					out.println("</script>");
 					} 
