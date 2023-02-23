@@ -9,11 +9,14 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 <link rel="stylesheet" href="CSS/signup.css">
+<link rel="stylesheet" href="CSS/homeButton.css">
 </head>
 <body>
-	<a href="index.html"> <img src="images/LMS.png"
-		alt="Logo of Leave Management System" height="40px" width="80px">
-	</a>
+	<section>
+		<a class="home" href="index.html"> <img src="images/home.png"
+			alt="Logo of Leave Management System" height="40px" width="80px">
+		</a>
+	</section>
 	<form action="createStudent">
 		<h1>SIGN UP STUDENT</h1>
 		<div class="icon">
@@ -29,10 +32,10 @@
 					type="password" placeholder="Enter Password minimum 8 characters"
 					name="psw" required>
 			</div>
-			<button type="submit">
+			<button class="final" type="submit">
 				<strong>SIGN UP</strong>
 			</button>
-			</div>
+		</div>
 	</form>
 </body>
 </html>

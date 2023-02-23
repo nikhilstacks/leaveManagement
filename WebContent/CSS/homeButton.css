@@ -1,0 +1,26 @@
+body {
+	background-color: #E9E8E8;
+	margin: 0;
+}
+
+.home {
+	display: inline;
+}
+
+.logout {
+	display: inline;
+	position: absolute;
+	right: 0;
+	margin-left: 3rem;
+}
+
+button {
+	padding: 10px 20px;
+	box-shadow: 3px 7px grey;
+	border: 2px solid red;
+	border-radius: 25px;
+}
+
+button:hover {
+	background-color: #E90064;
+}

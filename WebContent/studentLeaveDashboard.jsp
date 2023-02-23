@@ -4,10 +4,11 @@
 <%@ page import="com.nikhil.DatabaseConnectionMain"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.io.*"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="CSS/homeButton.css">
 <title>Student Leave Dashboard</title>
 </head>
 <body>
@@ -23,23 +24,26 @@
 			response.sendRedirect("studentLogin.jsp");
 		}
 	%>
-	<a href="index.html"> <img src="images/LMS.png"
-		alt="Logo of Leave Management System" height="40px" width="80px">
-	</a>
-	<form action="logoutStudent">
-		<input type="submit" value="LOGOUT">
-	</form>
+	<section>
+		<a class="home" href="index.html"> <img src="images/home.png"
+			alt="Logo of Leave Management System" height="40px" width="80px">
+		</a>
+		<form class="logout" action="logoutStudent">
+			<button type="submit">LogOut</button>
+		</form>
+	</section>
 	<%
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
 
 		ResultSet rs;
 
-		String qry = "Select * from leaves";
+		String qry = "Select * from leaves where email=?";
 
 		PreparedStatement pstmt = connObj.prepareStatement(qry,
 				Statement.RETURN_GENERATED_KEYS);
 
+		pstmt.setString(1,(String) session.getAttribute("usernameStudent"));
 		rs = pstmt.executeQuery();
 	%>
 	<TABLE cellpadding="15" border="1" style="background-color: #ffffcc;">

@@ -4,9 +4,11 @@ html, body {
       font-family: Roboto, Arial, sans-serif;
       font-size: 15px;
       background-color: #E9E8E8;
+      height: 100vh;
+      width: 100%;
       }
       form {
-      
+      	margin: auto;
       }
       input[type=text], input[type=password], input[type=email] {
       width: 100%;
@@ -22,7 +24,7 @@ html, body {
       justify-content: center;
       color: #4286f4;
       }
-      button {
+      .final {
       background-color: #4286f4;
       color: white;
       padding: 14px 0;
@@ -35,7 +37,7 @@ html, body {
       text-align:center;
       fone-size:18;
       }
-      button:hover {
+      .final:hover {
       opacity: 0.8;
       }
       .formcontainer {

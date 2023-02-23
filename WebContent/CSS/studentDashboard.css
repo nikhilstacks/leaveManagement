@@ -1,0 +1,19 @@
+.dashboard{
+	height: 80vh;
+	display: flex;
+	justify-content: center;
+}
+
+.main{
+	margin: auto;
+}
+
+input[type=submit]{
+	padding: 7rem;
+	font-size:2rem;
+	background-color: #D3E0DC;
+}
+
+input[type=submit]:hover{
+	background-color: #00ADB5;
+}

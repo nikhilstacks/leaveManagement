@@ -7,7 +7,8 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 	rel="stylesheet">
-<link rel="stylesheet" href="CSS/staffLogin.css">
+<link rel="stylesheet" href="CSS/Login.css">
+<link rel="stylesheet" href="CSS/homeButton.css">
 </head>
 <body>
 	<%
@@ -22,9 +23,9 @@
 			response.sendRedirect("studentDashboard.jsp");
 		}
 	%>
-	<!-- <a href="index.html"> <img src="images/LMS.png"
+	<a class="home" href="index.html"> <img src="images/home.png"
 		alt="Logo of Leave Management System" height="40px" width="80px">
-	</a> -->
+	</a>
 
 	<section class="main">
 		<form action="studentLogin">
@@ -37,7 +38,7 @@
 					<label for="psw"><strong>Password</strong></label> <input
 						type="password" placeholder="Enter Password" name="psw" required>
 				</div>
-				<button type="submit">Login</button>
+				<button  class="final" type="submit">Login</button>
 			</div>
 		</form>
 	</section>

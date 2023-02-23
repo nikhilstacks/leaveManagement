@@ -30,7 +30,7 @@ html, body {
       background-color: #E9E8E8;; 
       }
       .left-part, form {
-      padding: 25px;
+      /*  padding: 25px; */
       }
       .left-part {
       text-align: center;
@@ -76,7 +76,7 @@ html, body {
       .checkbox a:hover {
       color: #85d6de;
       }
-      .btn-item, button {
+      .btn-item, .final {
       padding: 10px 5px;
       margin-top: 20px;
       border-radius: 5px; 
@@ -91,10 +91,10 @@ html, body {
       display: inline-block;
       margin: 20px 5px 0;
       }
-      button {
+      .final {
       width: 100%;
       }
-      button:hover, .btn-item:hover {
+      .final:hover, .btn-item:hover {
       background: #85d6de;
       }
       @media (min-width: 568px) {

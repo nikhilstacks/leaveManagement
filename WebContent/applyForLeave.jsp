@@ -10,6 +10,7 @@
 	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
 	rel="stylesheet">
 <link rel="stylesheet" href="CSS/studentleave.css">
+<link rel="stylesheet" href="CSS/homeButton.css">
 </head>
 <body>
 	<%
@@ -24,12 +25,14 @@
 			response.sendRedirect("studentLogin.jsp");
 		}
 	%>
-	<a href="index.html"> <img src="images/LMS.png"
-		alt="Logo of Leave Management System" height="40px" width="80px">
-	</a>
-	<form action="logoutStudent">
-		<input type="submit" value="LOGOUT">
-	</form>
+	<section>
+		<a class="home" href="index.html"> <img src="images/home.png"
+			alt="Logo of Leave Management System" height="40px" width="80px">
+		</a>
+		<form class="logout" action="logoutStudent">
+			<button type="submit">LogOut</button>
+		</form>
+	</section>
 	<div class="main-block">
 		<div class="left-part">
 			<i class="fas fa-graduation-cap"></i>
@@ -54,7 +57,7 @@
 					required> <input type="text" name="comment"
 					placeholder="Comments">
 			</div>
-			<button type="submit">Submit</button>
+			<button class="final" type="submit">Submit</button>
 		</form>
 	</div>
 </body>

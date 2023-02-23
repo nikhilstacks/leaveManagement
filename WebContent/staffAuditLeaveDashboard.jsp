@@ -4,10 +4,11 @@
 <%@ page import="com.nikhil.DatabaseConnectionMain"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="java.io.*"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="CSS/homeButton.css">
 <title>Staff Audit Dashboard</title>
 </head>
 <body>
@@ -23,12 +24,14 @@
 			response.sendRedirect("stafflogin.jsp");
 		}
 	%>
-	<a href="index.html"> <img src="images/LMS.png"
-		alt="Logo of Leave Management System" height="40px" width="80px">
-	</a>
-	<form action="logoutStaff">
-		<input type="submit" value="LOGOUT">
-	</form>
+	<section>
+		<a class="home" href="index.html"> <img src="images/home.png"
+			alt="Logo of Leave Management System" height="40px" width="80px">
+		</a>
+		<form class="logout" action="logoutStaff">
+			<button type="submit">LogOut</button>
+		</form>
+	</section>
 	<%
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();

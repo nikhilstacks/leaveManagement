@@ -23,7 +23,7 @@ input[type=password], input[type=email] {
 	box-sizing: border-box;
 }
 
-button {
+.final {
 	background: #26a9e0;
 	color: white;
 	padding: 14px 0;
@@ -38,7 +38,7 @@ h1 {
 	fone-size: 18;
 }
 
-button:hover {
+.final:hover {
 	opacity: 0.8;
 }
 

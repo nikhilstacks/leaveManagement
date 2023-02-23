@@ -9,11 +9,14 @@
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 <link rel="stylesheet" href="CSS/signup.css">
+<link rel="stylesheet" href="CSS/homeButton.css">
 </head>
 <body>
-	<a href="index.html"> <img src="images/LMS.png"
-		alt="Logo of Leave Management System" height="40px" width="80px">
-	</a>
+	<section>
+		<a class="home" href="index.html"> <img src="images/home.png"
+			alt="Logo of Leave Management System" height="40px" width="80px">
+		</a>
+	</section>
 	<form action="createStaff">
 		<h1>SIGN UP STAFF</h1>
 		<div class="icon">
@@ -22,18 +25,18 @@
 		<div class="formcontainer">
 			<div class="container">
 				<label for="uname"><strong>Username</strong></label> <input
-					type="text" placeholder="Enter Username" name="uname" required>
-				<label for="mail"><strong>E-mail</strong></label> <input
-					type="email" placeholder="Enter E-mail" name="mail" required>
+					type="text" placeholder="Enter Username minimum 2 characters"
+					name="uname" required> <label for="mail"><strong>E-mail</strong></label>
+				<input type="email" placeholder="Enter E-mail" name="mail" required>
 				<label for="psw"><strong>Password</strong></label> <input
-					type="password" placeholder="Enter Password" name="psw" required>
+					type="password" placeholder="Enter Password Minimum 8 characters" name="psw" required>
 				<label for="psw"><strong>Employee Id</strong></label> <input
 					type="text" placeholder="Enter Id" name="id" required>
 			</div>
-			<button type="submit">
+			<button class="final" type="submit">
 				<strong>SIGN UP</strong>
 			</button>
-			</div>
+		</div>
 	</form>
 </body>
 </html>
