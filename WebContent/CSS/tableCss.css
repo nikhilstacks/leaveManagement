@@ -1,13 +1,17 @@
-.requests
-{
+.requests {
 	display: flex;
 	justify-content: center;
 }
 
-table{
-	border-collapse:collapse;
+table {
+	border-collapse: collapse;
 }
 
-.approve:hover{
+.approve:hover {
 	background-color: #A8E6CF;
 }
+
+th, td {
+	padding: 8px;
+}
+

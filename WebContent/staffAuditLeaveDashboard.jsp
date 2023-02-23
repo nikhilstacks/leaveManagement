@@ -28,9 +28,12 @@
 	<section>
 		<a class="home" href="index.html"> <img src="images/home.png"
 			alt="Logo of Leave Management System" height="40px" width="80px">
-		</a>
+		</a> <span>${usernameStaff }</span>
 		<form class="logout" action="logoutStaff">
 			<button type="submit">LogOut</button>
+		</form>
+		<form  action="history.jsp">
+			<button class="history" type="submit"><img src="images/history.png"></button>
 		</form>
 	</section>
 	<%
@@ -47,7 +50,7 @@
 		rs = pstmt.executeQuery();
 	%>
 	<section class="requests">
-	<TABLE cellpadding="15" border="1" style="background-color: #D3E0DC;">
+	<TABLE  border="1" style="background-color: #D3E0DC;">
 		<TR>
 			<TH>FULL NAME</TH>
 			<TH>EMAIL</TH>
@@ -68,12 +71,12 @@
 			<TD><%=rs.getDate(5)%></TD>
 			<TD><%=rs.getString(6)%></TD>
 			<TD><form action="approveLeave">
-					<input class="approve" type="hidden" name="id" value="<%=rs.getString(7)%>" />
-					<button type="submit">Approve</button>
+					<input  type="hidden" name="id" value="<%=rs.getString(7)%>" />
+					<button class="approve" type="submit">Approve</button>
 				</form>
 				<form action="declineLeave">
-					<input class="decline" type="hidden" name="id" value="<%=rs.getString(7)%>" />
-					<button type="submit">Decline</button>
+					<input  type="hidden" name="id" value="<%=rs.getString(7)%>" />
+					<button class="decline" type="submit">Decline</button>
 				</form></TD>
 		</TR>
 		<%
