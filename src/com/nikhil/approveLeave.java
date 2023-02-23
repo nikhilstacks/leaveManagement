@@ -1,9 +1,7 @@
 package com.nikhil;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
@@ -13,32 +11,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class approveLeave
- */
+
 @WebServlet("/approveLeave")
 public class approveLeave extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+	
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
+		
 
 		String id = request.getParameter("id");
 
-		Connection connObj;
-		String JDBC_URL = "jdbc:sqlserver://MUM-606Z2B3\\MSSQLSERVER04;DatabaseName=LeaveManagementSys;trustServerCertificate=true;encrypt=false;";
-
+		DatabaseConnectionMain connection = new DatabaseConnectionMain();
+		Connection connObj = connection.getConnection();
+		
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			connObj = DriverManager.getConnection(JDBC_URL, "sa", "root");
+			
 			if (connObj != null) {
-				System.out.println("successfully connected approve");
 
 				String qry1 = "update leaves set state='approved' WHERE id=?;";
 				String qry2 = "DELETE FROM audit WHERE id=?;";
@@ -52,10 +42,7 @@ public class approveLeave extends HttpServlet {
 				pstmt2.setString(1, id);
 				pstmt.executeQuery();
 				pstmt2.executeQuery();
-				System.out.println("successfully deleted data...");
-				out.println("<script type=\"text/javascript\">");
-				out.println("location='staffAuditLeaveDashboard.jsp';");
-				out.println("</script>");
+				response.sendRedirect("staffAuditLeaveDashboard.jsp");
 			}
 		} catch (Exception sqlException) {
 			sqlException.printStackTrace();

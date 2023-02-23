@@ -3,7 +3,6 @@ package com.nikhil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
@@ -13,34 +12,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class createStaff
- */
+
 @WebServlet("/createStaff")
 public class createStaff extends HttpServlet {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
+	
+//        ---------getting input values from url---------------------
 		String uname = request.getParameter("uname");
 		String mail = request.getParameter("mail");
 		String psw = request.getParameter("psw");
 		String id = request.getParameter("id");
 
 		PrintWriter out = response.getWriter();
-
-		Connection connObj;
-		String JDBC_URL = "jdbc:sqlserver://MUM-606Z2B3\\MSSQLSERVER04;DatabaseName=LeaveManagementSys;trustServerCertificate=true;encrypt=false;";
-
+		DatabaseConnectionMain connection = new DatabaseConnectionMain();
+		Connection connObj = connection.getConnection();
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			connObj = DriverManager.getConnection(JDBC_URL, "sa", "root");
+			
 			if (connObj != null) {
 				System.out.println("successfully connected");
 
@@ -58,10 +50,7 @@ public class createStaff extends HttpServlet {
 
 				int rows = pstmt.executeUpdate();
 				if (rows > 0) {
-					System.out.println("Data Inserted Successfully...");
-					out.println("<script type=\"text/javascript\">");
-					out.println("location='stafflogin.jsp';");
-					out.println("</script>");
+					response.sendRedirect("stafflogin.jsp");
 				} else
 				{
 					System.out.println("Data failed to insert...");

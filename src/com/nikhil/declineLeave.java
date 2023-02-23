@@ -1,7 +1,6 @@
 package com.nikhil;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,22 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class declineLeave
- */
 @WebServlet("/declineLeave")
 public class declineLeave extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
-
+		
 		String id = request.getParameter("id");
 
 		Connection connObj;
@@ -52,15 +43,11 @@ public class declineLeave extends HttpServlet {
 				pstmt2.setString(1, id);
 				pstmt.executeQuery();
 				pstmt2.executeQuery();
-				System.out.println("successfully deleted data...");
-				out.println("<script type=\"text/javascript\">");
-				out.println("location='staffAuditLeaveDashboard.jsp';");
-				out.println("</script>");
+				response.sendRedirect("staffAuditLeaveDashboard.jsp");
 			}
 		} catch (Exception sqlException) {
 			sqlException.printStackTrace();
 		}
 
 	}
-
 }

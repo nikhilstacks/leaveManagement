@@ -42,7 +42,7 @@
 
 		ResultSet rs;
 
-		String qry = "Select * from audit";
+		String qry = "Select * from audit order by id desc";
 
 		PreparedStatement pstmt = connObj.prepareStatement(qry,
 				Statement.RETURN_GENERATED_KEYS);

@@ -3,7 +3,6 @@ package com.nikhil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.time.LocalDate;
 
 import javax.servlet.Filter;
@@ -16,19 +15,15 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet Filter implementation class applyForLeaveValidation
- */
 @WebFilter("/applyForLeave")
 public class applyForLeaveValidation implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-		System.out.println("inside inside validation leaves");
+		
 		PrintWriter out = response.getWriter();
-
+		
+//		--------getting values from url------------------
 		String uname = request.getParameter("fname");
 		String mail = request.getParameter("mail");
 		String phone = request.getParameter("phone");
@@ -36,17 +31,13 @@ public class applyForLeaveValidation implements Filter {
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 
-		Connection connObj;
-		String JDBC_URL = "jdbc:sqlserver://MUM-606Z2B3\\MSSQLSERVER04;DatabaseName=LeaveManagementSys;trustServerCertificate=true;encrypt=false;";
-
+		DatabaseConnectionMain connection = new DatabaseConnectionMain();
+		Connection connObj = connection.getConnection();
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			connObj = DriverManager.getConnection(JDBC_URL, "sa", "root");
 			if (connObj != null) {
 				System.out.println("successfully connected validation");
 
-				// ---------------------This is for
-				// date------------------------------------------
+//			   ---------this is date validation----------------------
 				LocalDate date = LocalDate.now();
 				LocalDate startDateConvert = LocalDate.parse(startDate);
 				LocalDate endDateConvert = LocalDate.parse(endDate);
@@ -58,7 +49,6 @@ public class applyForLeaveValidation implements Filter {
 				
 				if (mail.equals((String) session
 						.getAttribute("usernameStudent"))) {
-					System.out.println("inside email matched");
 					if (uname.length() < 2 || phone.length() < 10
 							|| reason.length() < 10 || compareValueStart > 0
 							|| compareValueEnd > 0) {
@@ -71,7 +61,7 @@ public class applyForLeaveValidation implements Filter {
 					} else
 						chain.doFilter(request, response);
 				} else {
-					System.out.println("inside emaail matched else");
+//					System.out.println("inside email matched else");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Enter valid Email :-( ')");
 					out.println("location='applyForLeave.jsp';");

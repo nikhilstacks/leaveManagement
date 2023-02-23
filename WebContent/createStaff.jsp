@@ -26,12 +26,12 @@
 			<div class="container">
 				<label for="uname"><strong>Username</strong></label> <input
 					type="text" placeholder="Enter Username minimum 2 characters"
-					name="uname" required> <label for="mail"><strong>E-mail</strong></label>
-				<input type="email" placeholder="Enter E-mail" name="mail" required>
+					name="uname" required autocomplete="off"> <label for="mail"><strong>E-mail</strong></label>
+				<input type="email" placeholder="Enter E-mail" name="mail" required autocomplete="off">
 				<label for="psw"><strong>Password</strong></label> <input
-					type="password" placeholder="Enter Password Minimum 8 characters" name="psw" required>
+					type="password" placeholder="Enter Password Minimum 8 characters" name="psw" required autocomplete="off">
 				<label for="psw"><strong>Employee Id</strong></label> <input
-					type="text" placeholder="Enter Id" name="id" required>
+					type="text" placeholder="Enter Id" name="id" required autocomplete="off"> 
 			</div>
 			<button class="final" type="submit">
 				<strong>SIGN UP</strong>

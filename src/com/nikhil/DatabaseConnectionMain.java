@@ -12,7 +12,6 @@ public class DatabaseConnectionMain {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			connObj = DriverManager.getConnection(JDBC_URL, "sa", "root");
 			if (connObj != null) {
-				System.out.println("successfully connected");
 				return connObj;
 			}
 		} catch (Exception sqlException) {

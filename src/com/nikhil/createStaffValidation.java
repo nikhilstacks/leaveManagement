@@ -3,7 +3,6 @@ package com.nikhil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -16,16 +15,13 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-/**
- * Servlet Filter implementation class createStaffValidation
- */
+
 @WebFilter("/createStaff")
 public class createStaffValidation implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
+		
 		System.out.println("inside filter staff");
 		PrintWriter out = response.getWriter();
 
@@ -33,14 +29,11 @@ public class createStaffValidation implements Filter {
 		String mail = request.getParameter("mail");
 		String psw = request.getParameter("psw");
 
-		Connection connObj;
-		String JDBC_URL = "jdbc:sqlserver://MUM-606Z2B3\\MSSQLSERVER04;DatabaseName=LeaveManagementSys;trustServerCertificate=true;encrypt=false;";
-
+		DatabaseConnectionMain connection = new DatabaseConnectionMain();
+		Connection connObj = connection.getConnection();
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			connObj = DriverManager.getConnection(JDBC_URL, "sa", "root");
+			
 			if (connObj != null) {
-				System.out.println("successfully connected validation");
 				ResultSet rs;
 
 				String qry = "Select * from staff where email=?";
@@ -50,11 +43,13 @@ public class createStaffValidation implements Filter {
 
 				pstmt.setString(1, mail);
 				rs = pstmt.executeQuery();
+				
 				String CheckMail = null;
 				while (rs.next()) {
-					// Display values
 					CheckMail = rs.getString("email");
 				}
+				
+//				checking if mail already exists or not
 				if (CheckMail == null) {
 					if (uname.length() < 2 || psw.length() < 8) {
 
@@ -63,7 +58,6 @@ public class createStaffValidation implements Filter {
 						out.println("location='createStaff.jsp';");
 						out.println("</script>");
 
-						System.out.println("inside validation for create user");
 						// httpResponse.sendRedirect("createStudent.jsp");
 					} else
 						chain.doFilter(request, response);

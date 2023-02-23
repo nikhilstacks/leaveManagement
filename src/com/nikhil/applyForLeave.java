@@ -3,39 +3,31 @@ package com.nikhil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
 import javax.servlet.ServletException;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class applyForLeave
- */
+
 @WebServlet("/applyForLeave")
 public class applyForLeave extends HttpServlet {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		// System.out.println("inside leave");
 
-//		System.out.println("inside leave");
-		
-		
 		PrintWriter out = response.getWriter();
 
-		/*----------------getting parameters value from url---------------*/
-		
+//		----------------getting parameters value from url---------------
+
 		String fname = request.getParameter("fname");
 		String mail = request.getParameter("mail");
 		String phone = request.getParameter("phone");
@@ -44,18 +36,17 @@ public class applyForLeave extends HttpServlet {
 		String endDate = request.getParameter("endDate");
 		String comment = request.getParameter("comment");
 
-		Connection connObj;
-		String JDBC_URL = "jdbc:sqlserver://MUM-606Z2B3\\MSSQLSERVER04;DatabaseName=LeaveManagementSys;trustServerCertificate=true;encrypt=false;";
+//		------------------DB Connection-------------------------------------
+		DatabaseConnectionMain connection = new DatabaseConnectionMain();
+		Connection connObj = connection.getConnection();
 
-		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			connObj = DriverManager.getConnection(JDBC_URL, "sa", "root");
-			if (connObj != null) {
-				System.out.println("successfully connected leaves");
+		if (connObj != null) {
+			System.out.println("successfully connected leaves");
 
-				String insertLeaves = "insert into leaves(fname, email, phone, Reason, startDate, endDate, comments, state)"
-						+ "values(?,?,?,?,?,?,?,'pending')";
+			String insertLeaves = "insert into leaves(fname, email, phone, Reason, startDate, endDate, comments, state)"
+					+ "values(?,?,?,?,?,?,?,'pending')";
 
+			try {
 				PreparedStatement pstmt = connObj.prepareStatement(
 						insertLeaves, Statement.RETURN_GENERATED_KEYS);
 
@@ -83,14 +74,12 @@ public class applyForLeave extends HttpServlet {
 				int row2 = pstmt2.executeUpdate();
 
 				if (row1 > 0 && row2 > 0) {
-					
-//					System.out.println("Data Inserted Successfully...");
-					out.println("<script type=\"text/javascript\">");
-					out.println("location='studentLeaveDashboard.jsp';");
-					out.println("</script>");
+
+					// System.out.println("Data Inserted Successfully...");
+					response.sendRedirect("studentLeaveDashboard.jsp");
 				} else {
-					
-//					System.out.println("failed to Inserted Data...");
+
+					// System.out.println("failed to Inserted Data...");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('data insertion fail :-( ');");
 					out.println("location='applyForLeave.jsp';");
@@ -98,9 +87,9 @@ public class applyForLeave extends HttpServlet {
 				}
 
 				connObj.close();
+			} catch (Exception sqlException) {
+				sqlException.printStackTrace();
 			}
-		} catch (Exception sqlException) {
-			sqlException.printStackTrace();
 		}
 
 	}

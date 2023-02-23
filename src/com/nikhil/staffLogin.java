@@ -3,7 +3,6 @@ package com.nikhil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -15,9 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class staffLogin
- */
 @WebServlet("/staffLogin")
 public class staffLogin extends HttpServlet {
 
@@ -28,18 +24,15 @@ public class staffLogin extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		PrintWriter out = response.getWriter();
 
 		String mail = request.getParameter("mail");
 		String psw = request.getParameter("psw");
 
-		Connection connObj;
-		String JDBC_URL = "jdbc:sqlserver://MUM-606Z2B3\\MSSQLSERVER04;DatabaseName=LeaveManagementSys;trustServerCertificate=true;encrypt=false;";
-
+		DatabaseConnectionMain connection = new DatabaseConnectionMain();
+		Connection connObj = connection.getConnection();
 		try {
-			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			connObj = DriverManager.getConnection(JDBC_URL, "sa", "root");
 			if (connObj != null) {
 				System.out.println("successfully connected");
 				
@@ -73,9 +66,7 @@ public class staffLogin extends HttpServlet {
 					{
 					HttpSession session = request.getSession();
 				    session.setAttribute("usernameStaff", mail);	
-					out.println("<script type=\"text/javascript\">");
-					out.println("location='staffAuditLeaveDashboard.jsp';");
-					out.println("</script>");
+					response.sendRedirect("staffAuditLeaveDashboard.jsp");
 					} 
 					else 
 					{
