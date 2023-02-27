@@ -23,7 +23,6 @@ public class deleteLeave extends HttpServlet {
 		Connection connObj = connection.getConnection();
 
 		if (connObj != null) {
-			System.out.println("successfully connected delete");
 
 			String qry1 = "DELETE FROM leaves WHERE id=?;";
 			String qry2 = "DELETE FROM audit WHERE id=? AND state='pending';";

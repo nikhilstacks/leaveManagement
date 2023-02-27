@@ -41,7 +41,6 @@ public class applyForLeave extends HttpServlet {
 		Connection connObj = connection.getConnection();
 
 		if (connObj != null) {
-			System.out.println("successfully connected leaves");
 
 			String insertLeaves = "insert into leaves(fname, email, phone, Reason, startDate, endDate, comments, state)"
 					+ "values(?,?,?,?,?,?,?,'pending')";

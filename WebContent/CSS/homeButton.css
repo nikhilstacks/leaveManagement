@@ -10,7 +10,7 @@ body {
 span{
 	background-color: #A6E3E9;
 	position: absolute;
-	right: 6rem;
+	right: 10rem;
     top: 0.7rem;
 }
 .logout {
@@ -34,7 +34,7 @@ button:hover {
 .history{
 	background-color: #D3E0DC;
 	position: absolute;
-	right: 16rem;
+	right: 6rem;
 	top: 0;
 }
 

@@ -3,6 +3,9 @@ package com.nikhil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 
 import javax.servlet.Filter;
@@ -20,10 +23,10 @@ public class applyForLeaveValidation implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		
+
 		PrintWriter out = response.getWriter();
-		
-//		--------getting values from url------------------
+
+		// --------getting values from url------------------
 		String uname = request.getParameter("fname");
 		String mail = request.getParameter("mail");
 		String phone = request.getParameter("phone");
@@ -35,9 +38,29 @@ public class applyForLeaveValidation implements Filter {
 		Connection connObj = connection.getConnection();
 		try {
 			if (connObj != null) {
-				System.out.println("successfully connected validation");
 
-//			   ---------this is date validation----------------------
+				// ---------this is date validation----------------------
+				
+				String DATE_FORMAT = "yyyy-MM-dd";
+				
+				DateFormat df = new SimpleDateFormat(DATE_FORMAT);
+				boolean dateCheck;
+				df.setLenient(false);
+				 try {
+			            df.setLenient(false);
+			            df.parse(startDate);
+			            df.parse(endDate);
+			            dateCheck = true;
+			        } catch (ParseException e) {
+			            dateCheck = false;
+			        }
+				if(dateCheck == false){
+					out.println("<script type=\"text/javascript\">");
+					out.println("alert('Enter Valid Date Format :-( ')");
+					out.println("location='applyForLeave.jsp';");
+					out.println("</script>");
+				}
+				
 				LocalDate date = LocalDate.now();
 				LocalDate startDateConvert = LocalDate.parse(startDate);
 				LocalDate endDateConvert = LocalDate.parse(endDate);
@@ -46,22 +69,21 @@ public class applyForLeaveValidation implements Filter {
 						.compareTo(endDateConvert);
 				HttpServletRequest req = (HttpServletRequest) request;
 				HttpSession session = req.getSession();
-				
+
 				if (mail.equals((String) session
 						.getAttribute("usernameStudent"))) {
 					if (uname.length() < 2 || phone.length() < 10
 							|| reason.length() < 10 || compareValueStart > 0
 							|| compareValueEnd > 0) {
 						out.println("<script type=\"text/javascript\">");
-						out.println("alert('Enter valid details :-( ')");
+						out.println("alert('Enter Valid Details :-( ')");
 						out.println("location='applyForLeave.jsp';");
 						out.println("</script>");
-
 						// httpResponse.sendRedirect("createStudent.jsp");
 					} else
 						chain.doFilter(request, response);
 				} else {
-//					System.out.println("inside email matched else");
+					// System.out.println("inside email matched else");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Enter valid Email :-( ')");
 					out.println("location='applyForLeave.jsp';");

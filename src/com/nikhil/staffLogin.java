@@ -34,7 +34,6 @@ public class staffLogin extends HttpServlet {
 		Connection connObj = connection.getConnection();
 		try {
 			if (connObj != null) {
-				System.out.println("successfully connected");
 				
 				ResultSet rs;
 

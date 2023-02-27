@@ -29,7 +29,6 @@ public class declineLeave extends HttpServlet {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 			connObj = DriverManager.getConnection(JDBC_URL, "sa", "root");
 			if (connObj != null) {
-				System.out.println("successfully connected decline");
 
 				String qry1 = "update leaves set state='declined' WHERE id=?;";
 				String qry2 = "DELETE FROM audit WHERE id=?;";
