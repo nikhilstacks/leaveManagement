@@ -28,7 +28,10 @@
 		}
 	%>
 	<section>
-		<a class="home" href="index.html"> <img src="images/home.png"
+		<a class="home" href="index.html"> <img
+			src="images/home.png" alt="Logo of Leave Management System"
+			height="40px" width="80px">
+		</a> <a class="home" href="staffAuditLeaveDashboard.jsp"> <img src="images/back.svg"
 			alt="Logo of Leave Management System" height="40px" width="80px">
 		</a> <span>${usernameStaff }</span>
 		<form class="logout" action="logoutStaff">

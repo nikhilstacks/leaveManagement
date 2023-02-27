@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @WebServlet("/createStaff")
@@ -50,6 +51,9 @@ public class createStaff extends HttpServlet {
 
 				int rows = pstmt.executeUpdate();
 				if (rows > 0) {
+					HttpSession session = request.getSession();
+//					if a staff logs out session will end by destroying variable related to that login
+					session.removeAttribute("usernameStaff");
 					response.sendRedirect("stafflogin.jsp");
 				} else
 				{

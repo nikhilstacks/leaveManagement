@@ -21,7 +21,6 @@ public class createStudentValidation implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 
-		System.out.println("inside filter student");
 		PrintWriter out = response.getWriter();
 
 		String uname = request.getParameter("uname");
@@ -32,7 +31,6 @@ public class createStudentValidation implements Filter {
 		Connection connObj = connection.getConnection();
 		try {
 			if (connObj != null) {
-				System.out.println("successfully connected validation");
 				ResultSet rs;
 
 				String qry = "Select * from student where email=?";

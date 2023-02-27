@@ -38,7 +38,7 @@
 					<label for="psw"><strong>Password</strong></label> <input
 						type="password" placeholder="Enter Password" name="psw" required>
 				</div>
-				<button  class="final" type="submit">Login</button>
+				<button class="final" type="submit">Login</button>
 			</div>
 		</form>
 	</section>

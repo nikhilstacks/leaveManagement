@@ -28,21 +28,21 @@
 			alt="Logo of Leave Management System" height="40px" width="80px">
 		</a>
 	</section>
-	
+
 	<section class="main">
-	<form action="staffLogin">
-		<h1>Login Staff</h1>
-		<div class="formcontainer">
-			<hr />
-			<div class="container">
-				<label for="uname"><strong>Username</strong></label> <input
-					type="email" placeholder="Enter Email" name="mail" required>
-				<label for="psw"><strong>Password</strong></label> <input
-					type="password" placeholder="Enter Password" name="psw" required>
+		<form action="staffLogin">
+			<h1>Login Staff</h1>
+			<div class="formcontainer">
+				<hr />
+				<div class="container">
+					<label for="uname"><strong>Username</strong></label> <input
+						type="email" placeholder="Enter Email" name="mail" required>
+					<label for="psw"><strong>Password</strong></label> <input
+						type="password" placeholder="Enter Password" name="psw" required>
+				</div>
+				<button class="final" type="submit">Login</button>
 			</div>
-			<button class="final" type="submit">Login</button>
-		</div>
-	</form>
+		</form>
 	</section>
 
 </body>

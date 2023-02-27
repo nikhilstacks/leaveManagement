@@ -26,7 +26,10 @@
 		}
 	%>
 	<section>
-		<a class="home" href="index.html"> <img src="images/home.png"
+		<a class="home" href="index.html"> <img
+			src="images/home.png" alt="Logo of Leave Management System"
+			height="40px" width="80px">
+		</a> <a class="home" href="studentDashboard.jsp"> <img src="images/back.svg"
 			alt="Logo of Leave Management System" height="40px" width="80px">
 		</a><span>${usernameStudent }</span>
 		<form class="logout" action="logoutStudent">
@@ -48,14 +51,17 @@
 			<div class="info">
 				<input class="fname" type="text" name="fname"
 					placeholder="Full name" required> <input type="email"
-					name="mail" placeholder="Email" required value="${usernameStudent}" readonly> <input
-					type="text" name="phone" placeholder="Phone number Min 10 characters" required autocomplete="off">
-				<input type="text" name="rtl" placeholder="Reason to Leave" autocomplete="off" required>
+					name="mail" placeholder="Email" required value="${usernameStudent}"
+					readonly> <input type="text" name="phone"
+					placeholder="Phone number Min 10 characters" required
+					autocomplete="off"> <input type="text" name="rtl"
+					placeholder="Reason to Leave" autocomplete="off" required>
 				<input type="datetime" name="startDate"
-					placeholder="Start date YYYY-MM-DD" autocomplete="off" required> <input
-					type="datetime" name="endDate" placeholder="End date YYYY-MM-DD" autocomplete="off"
-					required> <input type="text" name="comment"
-					placeholder="Comments" autocomplete="off">
+					placeholder="Start date YYYY-MM-DD" autocomplete="off" required>
+				<input type="datetime" name="endDate"
+					placeholder="End date YYYY-MM-DD" autocomplete="off" required>
+				<input type="text" name="comment" placeholder="Comments"
+					autocomplete="off">
 			</div>
 			<button class="final" type="submit">Submit</button>
 		</form>
