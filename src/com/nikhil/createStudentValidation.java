@@ -41,10 +41,10 @@ public class createStudentValidation implements Filter {
 				pstmt.setString(1, mail);
 				rs = pstmt.executeQuery();
 				String CheckMail = null;
-				
-//				checking if email is already exists or not
+
+				// checking if email is already exists or not
 				while (rs.next()) {
-				
+
 					CheckMail = rs.getString("email");
 				}
 				if (CheckMail == null) {

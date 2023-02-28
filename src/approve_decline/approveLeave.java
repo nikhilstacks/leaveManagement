@@ -13,23 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.nikhil.DatabaseConnectionMain;
 
-
 @WebServlet("/approveLeave")
 public class approveLeave extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
 
 		String id = request.getParameter("id");
 
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
-		
+
 		try {
-			
+
 			if (connObj != null) {
 
 				String qry1 = "update leaves set state='approved' WHERE id=?;";

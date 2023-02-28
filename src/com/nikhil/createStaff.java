@@ -13,17 +13,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 @WebServlet("/createStaff")
 public class createStaff extends HttpServlet {
 
-	
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-	
-//        ---------getting input values from url---------------------
+
+		// ---------getting input values from url---------------------
 		String uname = request.getParameter("uname");
 		String mail = request.getParameter("mail");
 		String psw = request.getParameter("psw");
@@ -33,13 +31,12 @@ public class createStaff extends HttpServlet {
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
 		try {
-			
+
 			if (connObj != null) {
 				System.out.println("successfully connected");
 
 				String get = "insert into staff(name, email, password, employee_id)"
 						+ "values(?,?,?,?)";
-
 
 				PreparedStatement pstmt = connObj.prepareStatement(get,
 						Statement.RETURN_GENERATED_KEYS);
@@ -52,11 +49,11 @@ public class createStaff extends HttpServlet {
 				int rows = pstmt.executeUpdate();
 				if (rows > 0) {
 					HttpSession session = request.getSession();
-//					if a staff logs out session will end by destroying variable related to that login
+					// if a staff logs out session will end by destroying
+					// variable related to that login
 					session.removeAttribute("usernameStaff");
 					response.sendRedirect("stafflogin.jsp");
-				} else
-				{
+				} else {
 					System.out.println("Data failed to insert...");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Account Creation Failed :-( ');");

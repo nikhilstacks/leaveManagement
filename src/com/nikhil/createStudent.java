@@ -14,13 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/createStudent")
 public class createStudent extends HttpServlet {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
-//		-------getting values from url----------------
+
+		// -------getting values from url----------------
 		String uname = request.getParameter("uname");
 		String mail = request.getParameter("mail");
 		String psw = request.getParameter("psw");

@@ -40,28 +40,31 @@ public class applyForLeaveValidation implements Filter {
 			if (connObj != null) {
 
 				// ---------this is date validation----------------------
-				
+
 				String DATE_FORMAT = "yyyy-MM-dd";
-				
+
 				DateFormat df = new SimpleDateFormat(DATE_FORMAT);
 				boolean dateCheck;
 				df.setLenient(false);
-				 try {
-			            df.setLenient(false);
-			            df.parse(startDate);
-			            df.parse(endDate);
-			            dateCheck = true;
-			        } catch (ParseException e) {
-			            dateCheck = false;
-			        }
-				if(dateCheck == false){
+				try {
+					df.setLenient(false);
+					df.parse(startDate);
+					df.parse(endDate);
+					dateCheck = true;
+				} catch (ParseException e) {
+					dateCheck = false;
+				}
+				if (dateCheck == false) {
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Enter Valid Date Format :-( ')");
 					out.println("location='applyForLeave.jsp';");
 					out.println("</script>");
 				}
-				
+
+				// getting today date
 				LocalDate date = LocalDate.now();
+
+				// parsing string to date
 				LocalDate startDateConvert = LocalDate.parse(startDate);
 				LocalDate endDateConvert = LocalDate.parse(endDate);
 				int compareValueStart = date.compareTo(startDateConvert);

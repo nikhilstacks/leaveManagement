@@ -24,7 +24,7 @@ public class staffLogin extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		PrintWriter out = response.getWriter();
 
 		String mail = request.getParameter("mail");
@@ -34,7 +34,7 @@ public class staffLogin extends HttpServlet {
 		Connection connObj = connection.getConnection();
 		try {
 			if (connObj != null) {
-				
+
 				ResultSet rs;
 
 				String qry = "Select * from staff where email=?";
@@ -51,24 +51,20 @@ public class staffLogin extends HttpServlet {
 					CheckMail = rs.getString("email");
 					pass = rs.getString("password");
 				}
-				
-				if(CheckMail == null)
-				{
+
+				if (CheckMail == null) {
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('invalid Credentials');");
 					out.println("location='stafflogin.jsp';");
 					out.println("</script>");
 
 				} else {
-					
-					if(pass.equals(psw))
-					{
-					HttpSession session = request.getSession();
-				    session.setAttribute("usernameStaff", mail);	
-					response.sendRedirect("staffAuditLeaveDashboard.jsp");
-					} 
-					else 
-					{
+
+					if (pass.equals(psw)) {
+						HttpSession session = request.getSession();
+						session.setAttribute("usernameStaff", mail);
+						response.sendRedirect("staffAuditLeaveDashboard.jsp");
+					} else {
 						out.println("<script type=\"text/javascript\">");
 						out.println("alert('invalid credentials');");
 						out.println("location='stafflogin.jsp';");

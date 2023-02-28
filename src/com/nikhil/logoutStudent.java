@@ -15,11 +15,10 @@ public class logoutStudent extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
 
 		HttpSession session = request.getSession();
-		
-//		destroying session variable related to login
+
+		// destroying session variable related to login
 		session.removeAttribute("usernameStudent");
 
 		response.sendRedirect("index.html");

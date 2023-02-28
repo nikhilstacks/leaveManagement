@@ -17,6 +17,7 @@ html *, body {
 	width: 100%;
 }
 
+/* This will tilt the calender image */
 .calender {
 	transform: rotate(25deg);
 }
@@ -28,7 +29,7 @@ html *, body {
 	z-index: 5;
 }
 
-.author{
+.author {
 	font-size: 2rem;
 	color: #EEEEEE;
 }

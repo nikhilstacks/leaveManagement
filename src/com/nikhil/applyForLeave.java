@@ -12,21 +12,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet("/applyForLeave")
 public class applyForLeave extends HttpServlet {
-
 
 	private static final long serialVersionUID = 1L;
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		// System.out.println("inside leave");
 
 		PrintWriter out = response.getWriter();
 
-//		----------------getting parameters value from url---------------
+		// ----------------getting parameters value from url---------------
 
 		String fname = request.getParameter("fname");
 		String mail = request.getParameter("mail");
@@ -36,7 +34,7 @@ public class applyForLeave extends HttpServlet {
 		String endDate = request.getParameter("endDate");
 		String comment = request.getParameter("comment");
 
-//		------------------DB Connection-------------------------------------
+		// ------------------DB Connection-------------------------------------
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
 

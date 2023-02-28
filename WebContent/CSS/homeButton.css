@@ -13,16 +13,17 @@ body {
 
 .home {
 	display: inline;
-	margin: 0; } .back {
+	margin: 0;
+}
+
+.back {
 	margin: 0;
 }
 
 .back>img {
-	position: absolute; 
-	
+	position: absolute;
 	left: 80px;
 }
-
 
 span {
 	background-color: #A6E3E9;

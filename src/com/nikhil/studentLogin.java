@@ -21,10 +21,10 @@ public class studentLogin extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		PrintWriter out = response.getWriter();
 
-//		getting value from url
+		// getting value from url
 		String mail = request.getParameter("mail");
 		String psw = request.getParameter("psw");
 
@@ -32,7 +32,7 @@ public class studentLogin extends HttpServlet {
 		Connection connObj = connection.getConnection();
 		try {
 			if (connObj != null) {
-				
+
 				ResultSet rs;
 
 				String qry = "Select * from student where email=?";
@@ -44,8 +44,8 @@ public class studentLogin extends HttpServlet {
 				rs = pstmt.executeQuery();
 				String CheckMail = null;
 				String pass = null;
-				
-//				getting value of email and password from database
+
+				// getting value of email and password from database
 				while (rs.next()) {
 					// Display values
 					CheckMail = rs.getString("email");
@@ -62,7 +62,7 @@ public class studentLogin extends HttpServlet {
 
 					if (pass.equals(psw)) {
 						HttpSession session = request.getSession();
-					    session.setAttribute("usernameStudent", mail);
+						session.setAttribute("usernameStudent", mail);
 						response.sendRedirect("studentDashboard.jsp");
 					} else {
 						out.println("<script type=\"text/javascript\">");

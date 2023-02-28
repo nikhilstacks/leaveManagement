@@ -28,11 +28,11 @@
 		}
 	%>
 	<section>
-		<a class="home" href="index.html"> <img
-			src="images/home.png" alt="Logo of Leave Management System"
-			height="40px" width="80px">
-		</a> <a class="back" href="staffAuditLeaveDashboard.jsp"> <img src="images/back.svg"
+		<a class="home" href="index.html"> <img src="images/home.png"
 			alt="Logo of Leave Management System" height="40px" width="80px">
+		</a> <a class="back" href="staffAuditLeaveDashboard.jsp"> <img
+			src="images/back.svg" alt="Logo of Leave Management System"
+			height="40px" width="80px">
 		</a> <span>${usernameStaff }</span>
 		<form class="logout" action="logoutStaff">
 			<button type="submit">LogOut</button>
@@ -44,6 +44,7 @@
 
 		ResultSet rs;
 
+		//same leave table but fetching only values having approved or declined status
 		String qry = "Select fname, email, reason, startDate, endDate, state from leaves where state='approved' OR state='declined' order by id desc";
 
 		PreparedStatement pstmt = connObj.prepareStatement(qry,

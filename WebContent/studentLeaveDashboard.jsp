@@ -26,11 +26,11 @@
 		}
 	%>
 	<section>
-		<a class="home" href="index.html"> <img
-			src="images/home.png" alt="Logo of Leave Management System"
-			height="40px" width="80px">
-		</a> <a class="back" href="studentDashboard.jsp"> <img src="images/back.svg"
+		<a class="home" href="index.html"> <img src="images/home.png"
 			alt="Logo of Leave Management System" height="40px" width="80px">
+		</a> <a class="back" href="studentDashboard.jsp"> <img
+			src="images/back.svg" alt="Logo of Leave Management System"
+			height="40px" width="80px">
 		</a><span>${usernameStudent }</span>
 		<form class="logout" action="logoutStudent">
 			<button type="submit">LogOut</button>
@@ -51,7 +51,7 @@
 		rs = pstmt.executeQuery();
 	%>
 	<section class="requests">
-		<TABLE  border="1" style="background-color: white;">
+		<TABLE border="1" style="background-color: white;">
 			<TR>
 				<TH>FULL NAME</TH>
 				<TH>EMAIL</TH>

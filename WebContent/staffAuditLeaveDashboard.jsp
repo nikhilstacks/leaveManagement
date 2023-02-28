@@ -32,8 +32,10 @@
 		<form class="logout" action="logoutStaff">
 			<button type="submit">LogOut</button>
 		</form>
-		<form  action="history.jsp">
-			<button class="history" type="submit"><img src="images/history.png"></button>
+		<form action="history.jsp">
+			<button class="history" type="submit">
+				<img src="images/history.png">
+			</button>
 		</form>
 	</section>
 	<%
@@ -50,44 +52,44 @@
 		rs = pstmt.executeQuery();
 	%>
 	<section class="requests">
-	<TABLE  border="1" style="background-color: white;">
-		<TR>
-			<TH>FULL NAME</TH>
-			<TH>EMAIL</TH>
-			<TH>REASON FOR LEAVE</TH>
-			<TH>START DATE</TH>
-			<TH>END DATE</TH>
-			<TH>STATUS</TH>
-			<TH>ACTIONS</TH>
-		</TR>
-		<%
-			while (rs.next()) {
-		%>
-		<TR>
-			<TD><%=rs.getString(1)%></TD>
-			<TD><%=rs.getString(2)%></TD>
-			<TD><%=rs.getString(3)%></TD>
-			<TD><%=rs.getDate(4)%></TD>
-			<TD><%=rs.getDate(5)%></TD>
-			<TD><%=rs.getString(6)%></TD>
-			<TD><form action="approveLeave">
-					<input  type="hidden" name="id" value="<%=rs.getString(7)%>" />
-					<button class="approve" type="submit">Approve</button>
-				</form>
-				<form action="declineLeave">
-					<input  type="hidden" name="id" value="<%=rs.getString(7)%>" />
-					<button class="decline" type="submit">Decline</button>
-				</form></TD>
-		</TR>
-		<%
-			}
-		%>
-		<%
-			// close all the connections.
-			rs.close();
-			connObj.close();
-		%>
-	</TABLE>
+		<TABLE border="1" style="background-color: white;">
+			<TR>
+				<TH>FULL NAME</TH>
+				<TH>EMAIL</TH>
+				<TH>REASON FOR LEAVE</TH>
+				<TH>START DATE</TH>
+				<TH>END DATE</TH>
+				<TH>STATUS</TH>
+				<TH>ACTIONS</TH>
+			</TR>
+			<%
+				while (rs.next()) {
+			%>
+			<TR>
+				<TD><%=rs.getString(1)%></TD>
+				<TD><%=rs.getString(2)%></TD>
+				<TD><%=rs.getString(3)%></TD>
+				<TD><%=rs.getDate(4)%></TD>
+				<TD><%=rs.getDate(5)%></TD>
+				<TD><%=rs.getString(6)%></TD>
+				<TD><form action="approveLeave">
+						<input type="hidden" name="id" value="<%=rs.getString(7)%>" />
+						<button class="approve" type="submit">Approve</button>
+					</form>
+					<form action="declineLeave">
+						<input type="hidden" name="id" value="<%=rs.getString(7)%>" />
+						<button class="decline" type="submit">Decline</button>
+					</form></TD>
+			</TR>
+			<%
+				}
+			%>
+			<%
+				// close all the connections.
+				rs.close();
+				connObj.close();
+			%>
+		</TABLE>
 	</section>
 </body>
 </html>

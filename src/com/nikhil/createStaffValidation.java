@@ -15,13 +15,12 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-
 @WebFilter("/createStaff")
 public class createStaffValidation implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-		
+
 		System.out.println("inside filter staff");
 		PrintWriter out = response.getWriter();
 
@@ -32,7 +31,7 @@ public class createStaffValidation implements Filter {
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
 		try {
-			
+
 			if (connObj != null) {
 				ResultSet rs;
 
@@ -43,13 +42,13 @@ public class createStaffValidation implements Filter {
 
 				pstmt.setString(1, mail);
 				rs = pstmt.executeQuery();
-				
+
 				String CheckMail = null;
 				while (rs.next()) {
 					CheckMail = rs.getString("email");
 				}
-				
-//				checking if mail already exists or not
+
+				// checking if mail already exists or not
 				if (CheckMail == null) {
 					if (uname.length() < 2 || psw.length() < 8) {
 
