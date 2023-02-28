@@ -29,7 +29,7 @@
 		<a class="home" href="index.html"> <img
 			src="images/home.png" alt="Logo of Leave Management System"
 			height="40px" width="80px">
-		</a> <a class="home" href="studentDashboard.jsp"> <img src="images/back.svg"
+		</a> <a class="back" href="studentDashboard.jsp"> <img src="images/back.svg"
 			alt="Logo of Leave Management System" height="40px" width="80px">
 		</a><span>${usernameStudent }</span>
 		<form class="logout" action="logoutStudent">
@@ -52,7 +52,7 @@
 				<input class="fname" type="text" name="fname"
 					placeholder="Full name" required> <input type="email"
 					name="mail" placeholder="Email" required value="${usernameStudent}"
-					readonly> <input type="text" name="phone"
+					readonly> <input type="number" name="phone"
 					placeholder="Phone number Min 10 characters" required
 					autocomplete="off"> <input type="text" name="rtl"
 					placeholder="Reason to Leave" autocomplete="off" required>

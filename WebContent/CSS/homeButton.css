@@ -1,19 +1,36 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap')
+	;
+
+html * {
+	font-family: 'Poppins', sans-serif;
+}
+
 body {
-	background-color: #E9E8E8;
+	background-color: #EEEEEE;
 	margin: 0;
 }
 
 .home {
 	display: inline;
-	padding-right: 3px;
+	margin: 0; } .back {
+	margin: 0;
 }
 
-span{
+.back>img {
+	position: absolute; 
+	
+	left: 80px;
+}
+
+
+span {
 	background-color: #A6E3E9;
 	position: absolute;
 	right: 10rem;
-    top: 0.7rem;
+	top: 0.7rem;
 }
+
 .logout {
 	display: inline;
 	position: absolute;
@@ -23,7 +40,7 @@ span{
 
 button {
 	padding: 10px 20px;
-	box-shadow: 3px 7px grey;
+	box-shadow: 3px 3px grey;
 	border: 2px solid #3FC1C9;
 	border-radius: 25px;
 }
@@ -32,17 +49,17 @@ button:hover {
 	background-color: #E90064;
 }
 
-.history{
+.history {
 	background-color: #D3E0DC;
 	position: absolute;
 	right: 6rem;
 	top: 0;
 }
 
-.history>img{
+.history>img {
 	height: 1rem;
 }
 
-.history:hover{
+.history:hover {
 	background-color: #AEE1E1;
 }

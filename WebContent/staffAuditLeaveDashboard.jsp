@@ -50,7 +50,7 @@
 		rs = pstmt.executeQuery();
 	%>
 	<section class="requests">
-	<TABLE  border="1" style="background-color: #D3E0DC;">
+	<TABLE  border="1" style="background-color: white;">
 		<TR>
 			<TH>FULL NAME</TH>
 			<TH>EMAIL</TH>

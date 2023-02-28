@@ -1,22 +1,36 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap')
+	;
+
 html *, body {
-	font-family: Nunito, sans-serif;
+	font-family: 'Poppins', sans-serif;
 	margin: 0;
 	padding: 0;
 }
 
 /* CSS for top section in welcome page */
 .top {
-	background-color: #2D4059;
+	background-color: #00ADB5;
 	display: flex;
 	height: 50vh;
 	justify-content: space-evenly;
 	width: 100%;
 }
 
+.calender {
+	transform: rotate(25deg);
+}
+
 .mainHeading {
-	color: #F0EEED;
+	color: #222831;
 	margin: auto;
 	font-size: 4.3vw;
+	z-index: 5;
+}
+
+.author{
+	font-size: 2rem;
+	color: #EEEEEE;
 }
 
 h3 {
@@ -26,19 +40,23 @@ h3 {
 
 /* CSS for bottom section of welcome page */
 .bottom {
-	background-color: #6096B4;
+	position: fixed;
+	z-index: 100000;
+	background-color: #EEEEEE;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 	padding: 3rem 0;
 	width: 100%;
+	background-color: #E9E8E8;
 }
 
 .links {
 	margin: auto;
 }
 
-img {
+.fig {
+	z-index: 1;
 	border-radius: 50%;
 	max-width: 250px;
 	height: auto;
@@ -46,5 +64,5 @@ img {
 
 figcaption {
 	text-align: center;
-	color: #F0EEED;
+	color: #393E46;
 }

@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap');
+
+html *{
+	font-family: 'Poppins', sans-serif;
+}
+
 .dashboard{
 	height: 80vh;
 	display: flex;
@@ -14,7 +20,7 @@ input[type=submit]{
 	padding: 7rem;
 	font-size:2rem;
 	background-color: #D3E0DC;
-	border-radius:50px;
+	border: none;
 }
 
 input[type=submit]:hover{

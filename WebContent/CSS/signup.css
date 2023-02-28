@@ -1,61 +1,75 @@
+@import
+	url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap')
+	;
+
 html, body {
-      display: flex;
-      justify-content: center;
-      font-family: Roboto, Arial, sans-serif;
-      font-size: 15px;
-      background-color: #E9E8E8;
-      height: 100vh;
-      width: 100%;
-      }
-      form {
-      	margin: auto;
-      }
-      input[type=text], input[type=password], input[type=email] {
-      width: 100%;
-      padding: 16px 8px;
-      margin: 8px 0;
-      display: inline-block;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-      }
-      .icon {
-      font-size: 110px;
-      display: flex;
-      justify-content: center;
-      color: #4286f4;
-      }
-      .final {
-      background-color: #4286f4;
-      color: white;
-      padding: 14px 0;
-      margin: 10px 0;
-      border: none;
-      cursor: grab;
-      width: 48%;
-      }
-      h1 {
-      text-align:center;
-      fone-size:18;
-      }
-      .final:hover {
-      opacity: 0.8;
-      }
-      .formcontainer {
-      text-align: center;
-      margin: 24px 50px 12px;
-      }
-      .container {
-      padding: 16px 0;
-      text-align:left;
-      }
-      span.psw {
-      float: right;
-      padding-top: 0;
-      padding-right: 15px;
-      }
-      /* Change styles for span on extra small screens */
-      @media screen and (max-width: 300px) {
-      span.psw {
-      display: block;
-      float: none;
-      }
+	display: flex;
+	justify-content: center;
+	font-family: 'Poppins', sans-serif;
+	font-size: 15px;
+	background-color: #EEEEEE;
+	height: 100vh;
+	width: 100%;
+}
+
+form {
+	margin: auto;
+}
+
+input[type=text], input[type=password], input[type=email] {
+	width: 100%;
+	padding: 16px 8px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+.icon {
+	font-size: 110px;
+	display: flex;
+	justify-content: center;
+	color: #4286f4;
+}
+
+.final {
+	background-color: #4286f4;
+	color: white;
+	padding: 14px 0;
+	margin: 10px 0;
+	border: none;
+	cursor: grab;
+	width: 48%;
+}
+
+h1 {
+	text-align: center;
+	fone-size: 18;
+}
+
+.final:hover {
+	opacity: 0.8;
+}
+
+.formcontainer {
+	text-align: center;
+	margin: 24px 50px 12px;
+}
+
+.container {
+	padding: 16px 0;
+	text-align: left;
+}
+
+span.psw {
+	float: right;
+	padding-top: 0;
+	padding-right: 15px;
+}
+/* Change styles for span on extra small screens */
+@media screen and (max-width: 300px) {
+	span.psw {
+		display: block;
+		float: none;
+	}
+}
