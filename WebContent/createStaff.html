@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+
 <html>
 <title>Create Staff</title>
 <head>
@@ -10,15 +9,16 @@
 	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 <link rel="stylesheet" href="CSS/signup.css">
 <link rel="stylesheet" href="CSS/homeButton.css">
+<script src="JavaScript/popup.js" defer></script>
 </head>
 <body>
 	<section>
-		<a class="home" href="index.html"> <img src="images/home.png"
+		<a class="home" href="index.html"> <img src="images/back.svg"
 			alt="Logo of Leave Management System" height="40px" width="80px">
 		</a>
 	</section>
-	<form action="createStudent">
-		<h1>SIGN UP STUDENT</h1>
+	<form action="createStaff" onsubmit="return validationCreateStaff()">
+		<h1>SIGN UP STAFF</h1>
 		<div class="icon">
 			<i class="fas fa-user-circle"></i>
 		</div>
@@ -30,10 +30,13 @@
 				<input type="email" placeholder="Enter E-mail" name="mail" required
 					autocomplete="off"> <label for="psw"><strong>Password</strong></label>
 				<input type="password"
-					placeholder="Enter Password minimum 8 characters" name="psw"
-					required autocomplete="off">
+					placeholder="Enter Password Minimum 8 characters" name="psw"
+					required autocomplete="off"> <label for="psw"><strong>Employee
+						Id</strong></label> <input type="text" placeholder="Enter Id" name="id" required
+					autocomplete="off">
+					<p id="message" class="danger"></p>
 			</div>
-			<button class="final" type="submit">
+			<button class="final" type="submit" onclick="validationCreateStaff()">
 				<strong>SIGN UP</strong>
 			</button>
 		</div>

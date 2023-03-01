@@ -23,9 +23,7 @@ public class createStudentValidation implements Filter {
 
 		PrintWriter out = response.getWriter();
 
-		String uname = request.getParameter("uname");
 		String mail = request.getParameter("mail");
-		String psw = request.getParameter("psw");
 
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
@@ -44,24 +42,14 @@ public class createStudentValidation implements Filter {
 
 				// checking if email is already exists or not
 				while (rs.next()) {
-
 					CheckMail = rs.getString("email");
 				}
 				if (CheckMail == null) {
-					if (uname.length() < 2 || psw.length() < 8) {
-
-						out.println("<script type=\"text/javascript\">");
-						out.println("alert('Insert Valid data');");
-						out.println("location='createStudent.jsp';");
-						out.println("</script>");
-
-						// httpResponse.sendRedirect("createStudent.jsp");
-					} else
-						chain.doFilter(request, response);
+					chain.doFilter(request, response);
 				} else {
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Email already registered');");
-					out.println("location='createStudent.jsp';");
+					out.println("location='createStudent.html';");
 					out.println("</script>");
 				}
 

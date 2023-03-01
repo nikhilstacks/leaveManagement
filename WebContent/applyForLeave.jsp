@@ -4,6 +4,7 @@
 <html>
 <head>
 <title>Apply For Leave</title>
+<script src="JavaScript/popup.js" defer></script>
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
 <link
@@ -43,14 +44,14 @@
 				<h2>Create Leave Request Here</h2>
 			</div>
 		</div>
-		<form action="applyForLeave">
+		<form name="applyForLeave" onsubmit="return ApplyLeaveValidation()" action="applyForLeave">
 			<div class="title">
 				<i class="fas fa-pencil-alt"></i>
 				<h2>Register here</h2>
 			</div>
 			<div class="info">
 				<input class="fname" type="text" name="fname"
-					placeholder="Full name" required> <input type="email"
+					placeholder="Full name" required> <input class="userMail" type="email"
 					name="mail" placeholder="Email" required value="${usernameStudent}"
 					readonly> <input type="number" name="phone"
 					placeholder="Phone number Min 10 characters" required
@@ -62,8 +63,9 @@
 					placeholder="End date YYYY-MM-DD" autocomplete="off" required>
 				<input type="text" name="comment" placeholder="Comments"
 					autocomplete="off">
+				<p id="message" class="danger"></p>
 			</div>
-			<button class="final" type="submit">Submit</button>
+			<button class="final" type="submit" onclick="ApplyLeaveValidation()">Submit</button>
 		</form>
 	</div>
 </body>

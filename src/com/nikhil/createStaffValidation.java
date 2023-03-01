@@ -21,12 +21,9 @@ public class createStaffValidation implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 
-		System.out.println("inside filter staff");
 		PrintWriter out = response.getWriter();
 
-		String uname = request.getParameter("uname");
 		String mail = request.getParameter("mail");
-		String psw = request.getParameter("psw");
 
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
@@ -50,20 +47,11 @@ public class createStaffValidation implements Filter {
 
 				// checking if mail already exists or not
 				if (CheckMail == null) {
-					if (uname.length() < 2 || psw.length() < 8) {
-
-						out.println("<script type=\"text/javascript\">");
-						out.println("alert('Insert Valid data');");
-						out.println("location='createStaff.jsp';");
-						out.println("</script>");
-
-						// httpResponse.sendRedirect("createStudent.jsp");
-					} else
 						chain.doFilter(request, response);
 				} else {
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Email already registered');");
-					out.println("location='createStaff.jsp';");
+					out.println("location='createStaff.html';");
 					out.println("</script>");
 				}
 

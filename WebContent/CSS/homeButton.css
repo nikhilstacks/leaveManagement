@@ -64,3 +64,15 @@ button:hover {
 .history:hover {
 	background-color: #AEE1E1;
 }
+
+.auditHeading{
+	text-align: center;
+}
+
+.historyHeading{
+	text-align: center;
+}
+
+.danger{
+	color: red;
+}

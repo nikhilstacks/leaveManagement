@@ -33,7 +33,6 @@ public class createStaff extends HttpServlet {
 		try {
 
 			if (connObj != null) {
-				System.out.println("successfully connected");
 
 				String get = "insert into staff(name, email, password, employee_id)"
 						+ "values(?,?,?,?)";
@@ -57,7 +56,7 @@ public class createStaff extends HttpServlet {
 					System.out.println("Data failed to insert...");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Account Creation Failed :-( ');");
-					out.println("location='stafflogin.jsp';");
+					out.println("location='stafflogin.html';");
 					out.println("</script>");
 				}
 

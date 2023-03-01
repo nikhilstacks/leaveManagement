@@ -38,6 +38,7 @@
 			<button type="submit">LogOut</button>
 		</form>
 	</section>
+	<h1 class="historyHeading">History Requests</h1>
 	<%
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
@@ -53,7 +54,7 @@
 		rs = pstmt.executeQuery();
 	%>
 	<section class="requests">
-		<TABLE border="1" style="background-color: #D3E0DC;">
+		<TABLE border="1" style="background-color: white;">
 			<TR>
 				<TH>FULL NAME</TH>
 				<TH>EMAIL</TH>

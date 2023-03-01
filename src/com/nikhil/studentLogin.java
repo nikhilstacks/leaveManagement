@@ -55,7 +55,7 @@ public class studentLogin extends HttpServlet {
 				if (CheckMail == null) {
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('invalid Credentials');");
-					out.println("location='studentlogin.jsp';");
+					out.println("location='studentLogin.jsp';");
 					out.println("</script>");
 
 				} else {

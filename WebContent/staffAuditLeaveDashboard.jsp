@@ -38,6 +38,7 @@
 			</button>
 		</form>
 	</section>
+	<h1 class="auditHeading">Pending Requests</h1>
 	<%
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();

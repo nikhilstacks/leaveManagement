@@ -2,6 +2,7 @@ package com.nikhil;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -15,8 +16,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @WebFilter("/applyForLeave")
 public class applyForLeaveValidation implements Filter {
@@ -27,12 +26,24 @@ public class applyForLeaveValidation implements Filter {
 		PrintWriter out = response.getWriter();
 
 		// --------getting values from url------------------
-		String uname = request.getParameter("fname");
-		String mail = request.getParameter("mail");
-		String phone = request.getParameter("phone");
-		String reason = request.getParameter("rtl");
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
+
+		// ScriptEngineManager manager = new ScriptEngineManager();
+		// ScriptEngine engine = manager.getEngineByName("JavaScript");
+		// // read script file
+		// try {
+		// engine.eval(Files.newBufferedReader(
+		// Paths.get("C:\\Users\\nikhil.kumar\\workspace\\LeaveManagementSystem\\WebContent\\JavaScript\\popup.js"),
+		// StandardCharsets.UTF_8));
+		// Invocable inv = (Invocable) engine;
+		// // call function from script file
+		//
+		// inv.invokeFunction("test");
+		// } catch (NoSuchMethodException | ScriptException e1) {
+		// // TODO Auto-generated catch block
+		// e1.printStackTrace();
+		// }
 
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
@@ -70,28 +81,15 @@ public class applyForLeaveValidation implements Filter {
 				int compareValueStart = date.compareTo(startDateConvert);
 				int compareValueEnd = startDateConvert
 						.compareTo(endDateConvert);
-				HttpServletRequest req = (HttpServletRequest) request;
-				HttpSession session = req.getSession();
 
-				if (mail.equals((String) session
-						.getAttribute("usernameStudent"))) {
-					if (uname.length() < 2 || phone.length() < 10
-							|| reason.length() < 10 || compareValueStart > 0
-							|| compareValueEnd > 0) {
-						out.println("<script type=\"text/javascript\">");
-						out.println("alert('Enter Valid Details :-( ')");
-						out.println("location='applyForLeave.jsp';");
-						out.println("</script>");
-						// httpResponse.sendRedirect("createStudent.jsp");
-					} else
-						chain.doFilter(request, response);
-				} else {
-					// System.out.println("inside email matched else");
+				if (compareValueStart > 0 || compareValueEnd > 0) {
 					out.println("<script type=\"text/javascript\">");
-					out.println("alert('Enter valid Email :-( ')");
+					out.println("alert('Enter Valid Dates :-( ')");
 					out.println("location='applyForLeave.jsp';");
 					out.println("</script>");
-				}
+					// httpResponse.sendRedirect("createStudent.jsp");
+				} else
+					chain.doFilter(request, response);
 
 			}
 		} catch (Exception sqlException) {

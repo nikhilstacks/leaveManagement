@@ -71,6 +71,15 @@ figcaption {
 	color: #393E46;
 }
 
+.hide{
+	position: absolute;
+	visibility: hidden;
+}
+
+.show{
+	visibility: visible;
+}
+
 @media ( max-width : 800px) {
 	.top {
 		display: inline-block;
