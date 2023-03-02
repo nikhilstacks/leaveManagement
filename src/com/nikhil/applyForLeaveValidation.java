@@ -56,9 +56,7 @@ public class applyForLeaveValidation implements Filter {
 
 				DateFormat df = new SimpleDateFormat(DATE_FORMAT);
 				boolean dateCheck;
-				df.setLenient(false);
 				try {
-					df.setLenient(false);
 					df.parse(startDate);
 					df.parse(endDate);
 					dateCheck = true;

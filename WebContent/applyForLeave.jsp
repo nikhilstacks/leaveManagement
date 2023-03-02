@@ -44,23 +44,33 @@
 				<h2>Create Leave Request Here</h2>
 			</div>
 		</div>
-		<form name="applyForLeave" onsubmit="return ApplyLeaveValidation()" action="applyForLeave">
+		<form name="applyForLeave" onsubmit="return ApplyLeaveValidation()"
+			action="applyForLeave">
 			<div class="title">
 				<i class="fas fa-pencil-alt"></i>
 				<h2>Register here</h2>
 			</div>
 			<div class="info">
+				<label for="fname">Full Name</label>
 				<input class="fname" type="text" name="fname"
-					placeholder="Full name" required> <input class="userMail" type="email"
-					name="mail" placeholder="Email" required value="${usernameStudent}"
-					readonly> <input type="number" name="phone"
+					placeholder="Full name" required>
+				<label for="mail">Email</label>
+				<input class="userMail" type="email" name="mail" placeholder="Email"
+					required value="${usernameStudent}" readonly>
+				<label for="phone">Phone Number</label>
+				<input type="number" name="phone"
 					placeholder="Phone number Min 10 characters" required
-					autocomplete="off"> <input type="text" name="rtl"
-					placeholder="Reason to Leave" autocomplete="off" required>
+					autocomplete="off">
+				<label for="rtl">Reason For Leave</label>
+				<input type="text" name="rtl" placeholder="Reason to Leave"
+					autocomplete="off" required>
+				<label for="startDate">Leave Start Date</label>
 				<input type="datetime" name="startDate"
 					placeholder="Start date YYYY-MM-DD" autocomplete="off" required>
+				<label for="endDate">Leave End Date</label>
 				<input type="datetime" name="endDate"
 					placeholder="End date YYYY-MM-DD" autocomplete="off" required>
+				<label for="comment">Comment</label>
 				<input type="text" name="comment" placeholder="Comments"
 					autocomplete="off">
 				<p id="message" class="danger"></p>
