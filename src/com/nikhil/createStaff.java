@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @WebServlet("/createStaff")
 public class createStaff extends HttpServlet {
 
@@ -20,7 +23,9 @@ public class createStaff extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		
+		Logger  createStaffLogger = LogManager.getLogger(createStaff.class.getName());
+		
 		// ---------getting input values from url---------------------
 		String uname = request.getParameter("uname");
 		String mail = request.getParameter("mail");
@@ -36,6 +41,9 @@ public class createStaff extends HttpServlet {
 
 				String get = "insert into staff(name, email, password, employee_id)"
 						+ "values(?,?,?,?)";
+				
+				createStaffLogger.debug("executing insert into staff(name, email, password, employee_id)"
+						+ "values({},{},{},{})", uname, mail, psw, id);
 
 				PreparedStatement pstmt = connObj.prepareStatement(get,
 						Statement.RETURN_GENERATED_KEYS);
@@ -51,9 +59,10 @@ public class createStaff extends HttpServlet {
 					// if a staff logs out session will end by destroying
 					// variable related to that login
 					session.removeAttribute("usernameStaff");
+					createStaffLogger.info("User Created Successfully query executed");
 					response.sendRedirect("stafflogin.jsp");
 				} else {
-					System.out.println("Data failed to insert...");
+					createStaffLogger.debug("query execution failed");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Account Creation Failed :-( ');");
 					out.println("location='stafflogin.html';");
@@ -63,7 +72,7 @@ public class createStaff extends HttpServlet {
 				connObj.close();
 			}
 		} catch (Exception sqlException) {
-			sqlException.printStackTrace();
+			createStaffLogger.error("Exception sql {}", sqlException.getMessage());
 		}
 
 	}

@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @WebServlet("/staffLogin")
 public class staffLogin extends HttpServlet {
 
@@ -24,6 +27,9 @@ public class staffLogin extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+
+		Logger StaffLoginLogger = LogManager.getLogger(staffLogin.class
+				.getName());
 
 		PrintWriter out = response.getWriter();
 
@@ -53,6 +59,8 @@ public class staffLogin extends HttpServlet {
 				}
 
 				if (CheckMail == null) {
+
+					StaffLoginLogger.debug("invalid credentials Email doesn't exist create staff account");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('invalid Credentials');");
 					out.println("location='stafflogin.jsp';");
@@ -61,10 +69,13 @@ public class staffLogin extends HttpServlet {
 				} else {
 
 					if (pass.equals(psw)) {
+						
 						HttpSession session = request.getSession();
 						session.setAttribute("usernameStaff", mail);
+						StaffLoginLogger.debug("Staff Logged In successfully with username {}", mail);
 						response.sendRedirect("staffAuditLeaveDashboard.jsp");
 					} else {
+						StaffLoginLogger.debug("invalid credentials wrong password");
 						out.println("<script type=\"text/javascript\">");
 						out.println("alert('invalid credentials');");
 						out.println("location='stafflogin.jsp';");
@@ -73,7 +84,7 @@ public class staffLogin extends HttpServlet {
 				}
 			}
 		} catch (Exception sqlException) {
-			sqlException.printStackTrace();
+			StaffLoginLogger.error("Exception sql {}", sqlException.getMessage());
 		}
 
 	}

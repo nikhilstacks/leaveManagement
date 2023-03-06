@@ -15,6 +15,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @WebFilter("/createStaff")
 public class createStaffValidation implements Filter {
 
@@ -25,6 +28,9 @@ public class createStaffValidation implements Filter {
 
 		String mail = request.getParameter("mail");
 
+		Logger createStaffValidationLogger = LogManager
+				.getLogger(createStaffValidation.class.getName());
+
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
 		try {
@@ -33,6 +39,8 @@ public class createStaffValidation implements Filter {
 				ResultSet rs;
 
 				String qry = "Select * from staff where email=?";
+				createStaffValidationLogger.debug(
+						"executing Select * from staff where email={}", mail);
 
 				PreparedStatement pstmt = connObj.prepareStatement(qry,
 						Statement.RETURN_GENERATED_KEYS);
@@ -47,8 +55,9 @@ public class createStaffValidation implements Filter {
 
 				// checking if mail already exists or not
 				if (CheckMail == null) {
-						chain.doFilter(request, response);
+					chain.doFilter(request, response);
 				} else {
+					createStaffValidationLogger.debug("Email already registered Login back");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Email already registered');");
 					out.println("location='createStaff.html';");
@@ -57,7 +66,7 @@ public class createStaffValidation implements Filter {
 
 			}
 		} catch (Exception sqlException) {
-			sqlException.printStackTrace();
+			createStaffValidationLogger.error("Exception sql {}", sqlException.getMessage());
 		}
 
 	}

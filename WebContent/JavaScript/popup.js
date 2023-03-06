@@ -1,5 +1,6 @@
 function ApplyLeaveValidation() {
-
+	let isValid = true;
+	let msg = "";
 	console.log("inside validation");
 	let
 	message = document.getElementById('message');
@@ -20,21 +21,26 @@ function ApplyLeaveValidation() {
 
 	console.log(phone.valueOf())
 	if (uname.valueOf()[0].value.length < 2) {
-		message.innerHTML = "Enter valid name";
-		return false;
+		msg+= "Enter valid Name <br>";
+		message.innerHTML = msg;
+		isValid = false;
 	}
 	if (phone.valueOf()[0].value.length < 10) {
-		message.innerHTML = "Enter valid phone number";
-		return false;
+		msg+= "Enter valid Phone Number <br>";
+		message.innerHTML = msg;
+		isValid = false;
 	}
 	if (reason.valueOf()[0].value.length < 10) {
-		message.innerHTML = "Enter valid reason for leave";
-		return false;
+		msg+= "Enter valid Reason For Leave <br>";
+		message.innerHTML = msg;
+		isValid = false;
 	}
-	return true;
+	return isValid;
 }
 
 function validationCreateStaff() {
+	let isValid = true;
+	let msg = "";
 	let
 	message = document.getElementById('message');
 	let
@@ -43,17 +49,21 @@ function validationCreateStaff() {
 	psw = document.getElementsByName("psw");
 
 	if (uname.valueOf()[0].value.length < 2) {
-		message.innerHTML = "Enter valid  name";
-		return false;
+		msg+= "Enter valid Name <br>";
+		message.innerHTML = msg;
+		isValid = false;
 	}
 	if (psw.valueOf()[0].value.length < 8) {
-		message.innerHTML = "Enter valid password";
-		return false;
+		msg+= "Enter valid Password";
+		message.innerHTML = msg;
+		isValid = false;
 	}
-	return true;
+	return isValid;
 }
 
 function validationCreateStudent() {
+	let isValid = true;
+	let msg = "";
 	let
 	message = document.getElementById('message');
 	let
@@ -62,12 +72,14 @@ function validationCreateStudent() {
 	psw = document.getElementsByName("psw");
 
 	if (uname.valueOf()[0].value.length < 2) {
-		message.innerHTML = "Enter valid  name";
-		return false;
+		msg+= "Enter valid Name <br>";
+		message.innerHTML = msg;
+		isValid = false;
 	}
 	if (psw.valueOf()[0].value.length < 8) {
-		message.innerHTML = "Enter valid password";
-		return false;
+		msg+= "Enter valid Password";
+		message.innerHTML = msg;
+		isValid = false;
 	}
-	return true;
+	return isValid;
 }

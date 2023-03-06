@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @WebServlet("/studentLogin")
 public class studentLogin extends HttpServlet {
 
@@ -21,7 +24,10 @@ public class studentLogin extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		
+		Logger StudentLoginLogger = LogManager.getLogger(studentLogin.class
+				.getName());
+		
 		PrintWriter out = response.getWriter();
 
 		// getting value from url
@@ -53,6 +59,7 @@ public class studentLogin extends HttpServlet {
 				}
 
 				if (CheckMail == null) {
+					StudentLoginLogger.debug("invalid credentials Email doesn't exist create student account");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('invalid Credentials');");
 					out.println("location='studentLogin.jsp';");
@@ -63,8 +70,10 @@ public class studentLogin extends HttpServlet {
 					if (pass.equals(psw)) {
 						HttpSession session = request.getSession();
 						session.setAttribute("usernameStudent", mail);
+						StudentLoginLogger.debug("Student Logged in successfully with username: {}", mail);
 						response.sendRedirect("studentDashboard.jsp");
 					} else {
+						StudentLoginLogger.debug("invalid credentials Wrong Password");
 						out.println("<script type=\"text/javascript\">");
 						out.println("alert('invalid credentials');");
 						out.println("location='studentLogin.jsp';");
@@ -73,7 +82,7 @@ public class studentLogin extends HttpServlet {
 				}
 			}
 		} catch (Exception sqlException) {
-			sqlException.printStackTrace();
+			StudentLoginLogger.error("Exception sql {}", sqlException.getMessage());
 		}
 
 	}

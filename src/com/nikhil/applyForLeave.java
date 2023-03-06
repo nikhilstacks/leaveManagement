@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @WebServlet("/applyForLeave")
 public class applyForLeave extends HttpServlet {
 
@@ -23,6 +26,9 @@ public class applyForLeave extends HttpServlet {
 		// System.out.println("inside leave");
 
 		PrintWriter out = response.getWriter();
+
+		Logger applyForLeaveLogger = LogManager.getLogger(applyForLeave.class
+				.getName());
 
 		// ----------------getting parameters value from url---------------
 
@@ -42,6 +48,12 @@ public class applyForLeave extends HttpServlet {
 
 			String insertLeaves = "insert into leaves(fname, email, phone, Reason, startDate, endDate, comments, state)"
 					+ "values(?,?,?,?,?,?,?,'pending')";
+			
+			applyForLeaveLogger.info("Executing two queries");
+			applyForLeaveLogger
+					.debug("insert into leaves(fname, email, phone, Reason, startDate, endDate, comments, state)"
+							+ "values({},{},{},{},{},{},{},'pending')", fname,
+							mail, phone, reason, startDate, endDate, comment);
 
 			try {
 				PreparedStatement pstmt = connObj.prepareStatement(
@@ -57,6 +69,9 @@ public class applyForLeave extends HttpServlet {
 
 				String insertAudit = "insert into audit(fname, email, Reason, startDate, endDate, state)"
 						+ "values(?,?,?,?,?,'pending')";
+				
+				applyForLeaveLogger.debug("insert into audit(fname, email, Reason, startDate, endDate, state)"
+						+ "values({},{},{},{},{},'pending')", fname, mail, reason, startDate, endDate);
 
 				PreparedStatement pstmt2 = connObj.prepareStatement(
 						insertAudit, Statement.RETURN_GENERATED_KEYS);
@@ -71,12 +86,15 @@ public class applyForLeave extends HttpServlet {
 				int row2 = pstmt2.executeUpdate();
 
 				if (row1 > 0 && row2 > 0) {
-
+					
+					applyForLeaveLogger.info("Both Queries Exucuted successfully");
+					applyForLeaveLogger.info("successfully applied for leave");
 					// System.out.println("Data Inserted Successfully...");
 					response.sendRedirect("studentLeaveDashboard.jsp");
 				} else {
 
 					// System.out.println("failed to Inserted Data...");
+					applyForLeaveLogger.debug("Faild to Execute Queries");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('data insertion fail :-( ');");
 					out.println("location='applyForLeave.jsp';");
@@ -85,7 +103,7 @@ public class applyForLeave extends HttpServlet {
 
 				connObj.close();
 			} catch (Exception sqlException) {
-				sqlException.printStackTrace();
+				applyForLeaveLogger.error("Exception sql {}", sqlException.getMessage());
 			}
 		}
 

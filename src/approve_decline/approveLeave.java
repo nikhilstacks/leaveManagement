@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.nikhil.DatabaseConnectionMain;
 
 @WebServlet("/approveLeave")
@@ -21,6 +24,8 @@ public class approveLeave extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		String id = request.getParameter("id");
+		
+		Logger approve = LogManager.getLogger(approveLeave.class.getName());
 
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
@@ -31,6 +36,10 @@ public class approveLeave extends HttpServlet {
 
 				String qry1 = "update leaves set state='approved' WHERE id=?;";
 				String qry2 = "DELETE FROM audit WHERE id=?;";
+				
+				approve.debug("executing update leaves set state='approved' WHERE id={};", id);
+				approve.debug("executing DELETE FROM audit WHERE id={};", id);
+				
 
 				PreparedStatement pstmt = connObj.prepareStatement(qry1,
 						Statement.RETURN_GENERATED_KEYS);
@@ -41,6 +50,7 @@ public class approveLeave extends HttpServlet {
 				pstmt2.setString(1, id);
 				pstmt.executeQuery();
 				pstmt2.executeQuery();
+				approve.debug("leave approved query executed successfully");
 				response.sendRedirect("staffAuditLeaveDashboard.jsp");
 			}
 		} catch (Exception sqlException) {

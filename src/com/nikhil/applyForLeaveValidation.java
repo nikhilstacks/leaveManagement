@@ -2,7 +2,6 @@ package com.nikhil;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -17,6 +16,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @WebFilter("/applyForLeave")
 public class applyForLeaveValidation implements Filter {
 
@@ -29,24 +31,11 @@ public class applyForLeaveValidation implements Filter {
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
 
-		// ScriptEngineManager manager = new ScriptEngineManager();
-		// ScriptEngine engine = manager.getEngineByName("JavaScript");
-		// // read script file
-		// try {
-		// engine.eval(Files.newBufferedReader(
-		// Paths.get("C:\\Users\\nikhil.kumar\\workspace\\LeaveManagementSystem\\WebContent\\JavaScript\\popup.js"),
-		// StandardCharsets.UTF_8));
-		// Invocable inv = (Invocable) engine;
-		// // call function from script file
-		//
-		// inv.invokeFunction("test");
-		// } catch (NoSuchMethodException | ScriptException e1) {
-		// // TODO Auto-generated catch block
-		// e1.printStackTrace();
-		// }
-
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
 		Connection connObj = connection.getConnection();
+
+		Logger ApplyLeaveValidationLogger = LogManager
+				.getLogger(applyForLeaveValidation.class.getName());
 		try {
 			if (connObj != null) {
 
@@ -68,6 +57,7 @@ public class applyForLeaveValidation implements Filter {
 					out.println("alert('Enter Valid Date Format :-( ')");
 					out.println("location='applyForLeave.jsp';");
 					out.println("</script>");
+					ApplyLeaveValidationLogger.debug("Date Format is wrong");
 				}
 
 				// getting today date
@@ -79,19 +69,25 @@ public class applyForLeaveValidation implements Filter {
 				int compareValueStart = date.compareTo(startDateConvert);
 				int compareValueEnd = startDateConvert
 						.compareTo(endDateConvert);
+				
+				System.out.print(compareValueEnd);
+				System.out.print(compareValueStart);
 
 				if (compareValueStart > 0 || compareValueEnd > 0) {
+					ApplyLeaveValidationLogger
+					.debug("Enter valid Start and end Date");
 					out.println("<script type=\"text/javascript\">");
-					out.println("alert('Enter Valid Dates :-( ')");
+					out.println("alert('invalid Date start date should be future date and end date should be after start date');");
 					out.println("location='applyForLeave.jsp';");
 					out.println("</script>");
 					// httpResponse.sendRedirect("createStudent.jsp");
 				} else
-					chain.doFilter(request, response);
+				chain.doFilter(request, response);
 
 			}
 		} catch (Exception sqlException) {
-			sqlException.printStackTrace();
+			ApplyLeaveValidationLogger.error("Exception sql {}",
+					sqlException.getMessage());
 		}
 	}
 

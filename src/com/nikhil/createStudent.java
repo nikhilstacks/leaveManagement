@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @WebServlet("/createStudent")
 public class createStudent extends HttpServlet {
 
@@ -20,7 +23,9 @@ public class createStudent extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
 
+		Logger  createStudentLogger = LogManager.getLogger(createStudent.class.getName());
 		// -------getting values from url----------------
 		String uname = request.getParameter("uname");
 		String mail = request.getParameter("mail");
@@ -34,6 +39,8 @@ public class createStudent extends HttpServlet {
 			if (connObj != null) {
 				String get = "insert into student(name, email, password)"
 						+ "values(?,?,?)";
+				createStudentLogger.debug("executing insert into student(name, email, password)"
+						+ "values({},{},{})", uname, mail, psw);
 
 				PreparedStatement pstmt = connObj.prepareStatement(get,
 						Statement.RETURN_GENERATED_KEYS);
@@ -48,9 +55,10 @@ public class createStudent extends HttpServlet {
 					// if a staff logs out session will end by destroying
 					// variable related to that login
 					session.removeAttribute("usernameStudent");
+					createStudentLogger.debug("User created successfully query executed");
 					response.sendRedirect("studentLogin.jsp");
 				} else {
-					System.out.println("failed to Inserted Data...");
+					createStudentLogger.debug("Failed to execute query");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Account Creation Failed :-( ');");
 					out.println("location='studentLogin.jsp';");
@@ -60,7 +68,7 @@ public class createStudent extends HttpServlet {
 				connObj.close();
 			}
 		} catch (Exception sqlException) {
-			sqlException.printStackTrace();
+			createStudentLogger.error("Exception sql {}", sqlException.getMessage());
 		}
 
 	}

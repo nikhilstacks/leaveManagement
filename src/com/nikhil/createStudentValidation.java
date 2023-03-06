@@ -15,6 +15,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @WebFilter("/createStudent")
 public class createStudentValidation implements Filter {
 
@@ -23,6 +26,7 @@ public class createStudentValidation implements Filter {
 
 		PrintWriter out = response.getWriter();
 
+		Logger  createStudentValidationLogger = LogManager.getLogger(createStudentValidation.class.getName());
 		String mail = request.getParameter("mail");
 
 		DatabaseConnectionMain connection = new DatabaseConnectionMain();
@@ -32,6 +36,7 @@ public class createStudentValidation implements Filter {
 				ResultSet rs;
 
 				String qry = "Select * from student where email=?";
+				createStudentValidationLogger.debug("executing Select * from student where email={}", mail);
 
 				PreparedStatement pstmt = connObj.prepareStatement(qry,
 						Statement.RETURN_GENERATED_KEYS);
@@ -47,6 +52,7 @@ public class createStudentValidation implements Filter {
 				if (CheckMail == null) {
 					chain.doFilter(request, response);
 				} else {
+					createStudentValidationLogger.debug("Email already registered Login again");
 					out.println("<script type=\"text/javascript\">");
 					out.println("alert('Email already registered');");
 					out.println("location='createStudent.html';");
@@ -55,7 +61,7 @@ public class createStudentValidation implements Filter {
 
 			}
 		} catch (Exception sqlException) {
-			sqlException.printStackTrace();
+			createStudentValidationLogger.error("Exception sql {}", sqlException.getMessage());
 		}
 
 	}

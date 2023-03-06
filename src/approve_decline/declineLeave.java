@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 @WebServlet("/declineLeave")
 public class declineLeave extends HttpServlet {
 
@@ -19,6 +22,8 @@ public class declineLeave extends HttpServlet {
 
 	protected void service(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
+		Logger decline = LogManager.getLogger(declineLeave.class.getName());
 
 		String id = request.getParameter("id");
 
@@ -32,6 +37,9 @@ public class declineLeave extends HttpServlet {
 
 				String qry1 = "update leaves set state='declined' WHERE id=?;";
 				String qry2 = "DELETE FROM audit WHERE id=?;";
+				
+				decline.debug("executing update leaves set state='declined' WHERE id={};", id);
+				decline.debug("executing DELETE FROM audit WHERE id={};", id);
 
 				PreparedStatement pstmt = connObj.prepareStatement(qry1,
 						Statement.RETURN_GENERATED_KEYS);
@@ -42,6 +50,7 @@ public class declineLeave extends HttpServlet {
 				pstmt2.setString(1, id);
 				pstmt.executeQuery();
 				pstmt2.executeQuery();
+				decline.debug("Leave declined query executed successfully");
 				response.sendRedirect("staffAuditLeaveDashboard.jsp");
 			}
 		} catch (Exception sqlException) {
