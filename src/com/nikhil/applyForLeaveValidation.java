@@ -53,11 +53,11 @@ public class applyForLeaveValidation implements Filter {
 					dateCheck = false;
 				}
 				if (dateCheck == false) {
+					ApplyLeaveValidationLogger.debug("Date Format is wrong");
 					out.println("<script type=\"text/javascript\">");
-					out.println("alert('Enter Valid Date Format :-( ')");
+					out.println("alert('invalid Date format');");
 					out.println("location='applyForLeave.jsp';");
 					out.println("</script>");
-					ApplyLeaveValidationLogger.debug("Date Format is wrong");
 				}
 
 				// getting today date

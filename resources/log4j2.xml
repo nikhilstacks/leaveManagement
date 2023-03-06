@@ -7,21 +7,17 @@
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 		</Console>
 
-		<!-- <File name="log" fileName="C:\logs\LeaveMangementLog.txt">
+		<!-- <File name="log" fileName="C:\logs\LeaveMangementLog.txt"> <PatternLayout 
+			pattern="%d{yyyy-mm-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" 
+			/> </File> -->
+
+		<RollingFile name="log" fileName="C:\logs\first.log"
+			filePattern="C:\logs\Log-%d{yyyy-mm-dd HH-mm-ss}.log">
 			<PatternLayout
 				pattern="%d{yyyy-mm-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-		</File> -->
-
-		<RollingFile name="log" fileName="C:\logs\LeaveMangementLog.txt"
-			filePattern="logs/$${date:yyyy-MM}/LeaveMangementLog-%d{MM-dd-yyyy}-%i.log.gz">
-			<PatternLayout
-				pattern="%d{yyyy-mm-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-
 			<Policies>
-				<TimeBasedTriggeringPolicy />
-				<SizeBasedTriggeringPolicy size="3 MB" />
+				<SizeBasedTriggeringPolicy size="1 MB" />
 			</Policies>
-			<DefaultRolloverStrategy max="5" />
 		</RollingFile>
 	</appenders>
 

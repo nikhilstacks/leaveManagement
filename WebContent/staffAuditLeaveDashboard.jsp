@@ -3,7 +3,7 @@
 
 <%@ page import="com.nikhil.DatabaseConnectionMain"%>
 <%@ page import="java.sql.*"%>
-<%@ page import="java.io.*"%>
+<%@ page import="java.io.*,org.apache.logging.log4j.LogManager,org.apache.logging.log4j.Logger"%>
 <!DOCTYPE html">
 <html>
 <head>
@@ -44,7 +44,7 @@
 		Connection connObj = connection.getConnection();
 
 		ResultSet rs;
-
+		
 		String qry = "Select * from audit order by id desc";
 
 		PreparedStatement pstmt = connObj.prepareStatement(qry,
